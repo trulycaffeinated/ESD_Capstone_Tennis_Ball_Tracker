@@ -1,5 +1,7 @@
 # Tennis Ball Tracker ESD : Capstone Project
 FPGA-oriented tennis ball tracker using stereo vision and MATLAB–Blender simulation to estimate 3D ball position, evaluate accuracy under motion, compute coefficient of restitution, and perform in/out detection with visualization.
+
+We can do our demo in person or as a video or both. The in person demo will provide bonus points
 ## Project Description and Matlab Intro
 ---
 Likely tasks...
