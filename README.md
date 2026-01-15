@@ -6,7 +6,7 @@ Likely tasks...
 - system architecture **(group) (PRD)**
 - firmware (labs)
 - software (labs)
-- gui (labs)
+- gui (labs) (LAB 2)
 - algorithm development (labs)
 - system integration (Everybody - everything coming together)
 - system and subsystem testing **(Jeff preferably)**
