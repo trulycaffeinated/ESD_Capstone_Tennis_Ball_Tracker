@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "How to Git.md",
+                "file": "Documentation/How to Git.md",
                 "mode": "source",
                 "source": false
               },
@@ -198,10 +198,11 @@
       "bases:Create new base": false
     }
   },
-  "active": "37e6225e5e791820",
+  "active": "51a65583e757b5f0",
   "lastOpenFiles": [
+    "Documentation",
     "Changelog.md",
-    "How to Git.md",
+    "Documentation/How to Git.md",
     "README.md",
     "test.md"
   ]
