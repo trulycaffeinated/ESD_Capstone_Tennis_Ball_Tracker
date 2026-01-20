@@ -2,6 +2,30 @@
 FPGA-oriented tennis ball tracker using stereo vision and MATLAB–Blender simulation to estimate 3D ball position, evaluate accuracy under motion, compute coefficient of restitution, and perform in/out detection with visualization.
 
 We can do our demo in person or as a video or both. The in person demo will provide bonus points
+
+## Preliminary Stuffs
+---
+Clone this repo using git. If  you don't have it, you can install it over the web or using WinGET
+```powershell
+winget install git.git
+```
+
+Then
+```powershell
+git config --global user.name "Your Name"
+git config --global user.email "you@example.com"
+```
+
+I would recommend creating a system environment variable for wherever you save this repository. So for me I made a system environment variable to "C:\Users\tjeff\blah\blah\ESD_Project" labelled ESD2
+1. In powershell, cd to the place you want to place the git repo
+   ``cd "C:\users\{your user}\documents\..."`` is an example
+2. Download this repository / clone it via git 
+   ``git clone {repo link}``
+3. Windows -> "Edit the system environment variables" -> Environment variables
+4. New -> Name your variable and copy the directory path as the value
+5. Hit "OK"
+
+Now with any edits you make, it should be pretty easy to commit and push up changes
 ## Project Description and Matlab Intro
 ---
 Likely tasks...
