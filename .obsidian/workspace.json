@@ -4,39 +4,24 @@
     "type": "split",
     "children": [
       {
-        "id": "705137feef17e2c6",
+        "id": "ed3f4369d7e9557d",
         "type": "tabs",
         "children": [
           {
-            "id": "fe40297c747af196",
+            "id": "6e7ce31f177c611d",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Documentation/How to Git.md",
+                "file": "Class Notes/Week 2 - 1.20.2026 and 1.22.2026.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "How to Git"
-            }
-          },
-          {
-            "id": "37e6225e5e791820",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "README.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "README"
+              "title": "Week 2 - 1.20.2026 and 1.22.2026"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -109,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "README.md",
+                "file": "Class Notes/Week 2 - 1.20.2026 and 1.22.2026.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -119,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for README"
+              "title": "Backlinks for Week 2 - 1.20.2026 and 1.22.2026"
             }
           },
           {
@@ -198,13 +183,16 @@
       "bases:Create new base": false
     }
   },
-  "active": "51a65583e757b5f0",
+  "active": "6e7ce31f177c611d",
   "lastOpenFiles": [
+    "Documentation/How to Git.md",
+    "Class Notes/Week 2 - 1.20.2026 and 1.22.2026.md",
+    "Untitled.md",
+    "README.md",
+    "Class Notes",
     "Documentation/Project_AY2025_Spring.pdf",
     "Documentation",
     "Changelog.md",
-    "Documentation/How to Git.md",
-    "README.md",
     "test.md"
   ]
 }
