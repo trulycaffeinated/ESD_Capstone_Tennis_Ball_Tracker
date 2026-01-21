@@ -2,7 +2,6 @@
 FPGA-oriented tennis ball tracker using stereo vision and MATLAB–Blender simulation to estimate 3D ball position, evaluate accuracy under motion, compute coefficient of restitution, and perform in/out detection with visualization.
 
 We can do our demo in person or as a video or both. The in person demo will provide bonus points
-
 ## Preliminary Stuffs
 ---
 Clone this repo using git. If  you don't have it, you can install it over the web or using WinGET
@@ -41,7 +40,6 @@ Likely tasks...
 - Documentation **(Jeff preferably)**
 
 ### 🎯 Core technical pieces
-
 1. **Ball position accuracy (static camera)** – 15 pts  **(THIS IS *MOSTLY* LAB #1)*
     → How accurate is your 3D position estimate across X/Y/Z?
 2. **Camera motion accuracy (static ball)** – 15 pts  
