@@ -46,3 +46,47 @@ What happens if $Y_L \neq Y_R$ ? Math gets a lot harder
 Need to install Peter Corke's...
 - Robotics Toolbox
 - Machine Vision Toolbox
+
+### CameraCentral object
+When a camera is instantiated the options must be specified
+'focal' - focal length in meters
+'pixel' - pixel size in meters
+'resolution' - image plane resolution
+'centre' - location of the principal points (array of two values for x,y)
+'name' - text string name
+'pose' - position of the camera is a homogenous transformation
+```matlab
+cam=CameraControl(...);
+cam.T = ... %Homogenous transformation
+```
+
+The value to assign to the position is created with an SE3 object
+The position is insantiated with an x,y,z, position translation from the origin (0,0,0)
+```matlab
+pos=SE3(...array of three values, x, y ,z);
+cam.T=pos;
+```
+
+Cmera can now be used to get projections of world-view position
+
+Given **p** is an 3xN array of x,y,z, real-world positions
+- For the firstposition in the array, p(1,1) = $x_1$, p(2,1)=$y_1$,p(3,1)=$z_1$
+
+uv=cam.project(p) produces the corresponding image plane coordinates (2xN) of the projected image
+uv being the x,y coordinates in the image space. U and V are cords within the image
+
+Example camera setup in matlab
+```matlab
+cam=CentralCamera( ...
+'focal',10/1000, ...
+'pixel',6e-6, ...
+'resolution',[752, 480], ...
+'centre',[752/2, 480/2], ...
+'name','MyCamera');
+Tcam=SE3(0, 1, 1);
+cam.T=Tcam;
+P=[1,0,10]';
+cam.project(P)
+cam.plot(P)
+```
+
