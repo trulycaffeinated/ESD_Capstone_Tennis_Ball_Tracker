@@ -9,11 +9,18 @@
 % Clears all variables from the script otherwise bad things happen
 clearvars; clc;
 
-%% default values from LAB document
+%% Camera Spec values
+% IFWATER USB Camera 1080P High Speed 5-50mm focal lens (amazon.com)
+% Using this camera to test the variability of the model -- some key values
+%   1920x1080p : 60fps -- pixel size 0.0346mm
+%   1280x720p  : 120fps -- pixel size 0.0518mm
+%   640x360p   : 240fps -- pixel size 0.1037mm
+% higher resolution, less error but less data
 b = 50; % baseline [mm]
-f = [6, 10]; % focal length [mm]
-ps = .006; % pixel size [mm]
-xNumPix = 752; % total number of pixels in x direction of the sensor [px]
+f = [6, 10];
+ps = .06; % pixel size [mm]
+xNumPix = 720; % total number of pixels in x direction of the sensor [px]
+FPS = 100; % pictures taken / second
 cxLeft = xNumPix/2; % left camera x center [px]
 cxRight = xNumPix/2; % right camera x center [px]
 
@@ -21,7 +28,9 @@ cxRight = xNumPix/2; % right camera x center [px]
 %   The code is formatted here as such so that any change to Z_P (point
 %   depth) will "just work", and no other code will need to be changed to
 %   adjust for either the increased size, or increased number of points.
-Z_P = linspace(.1, 10, 100); % Depth values (.1 -> 10 in 100 increments)
+% I'm going to use different Frames/Second values for the depth increments
+Z_Random = randi([1, 100]);
+Z_P = linspace(.1, Z_Random, FPS); % Depth values (.1 -> 10 in FPS increments)
 N = numel(Z_P);
 P = [   ones(1,N);
         zeros(1,N);
@@ -101,7 +110,6 @@ hold off
 grid on
 xlabel('Depth Z [m]')
 ylabel('Depth Error [m]')
-ylim([-10e-14, 10e-14])
 title('Depth Error vs True Depth for varying focal lengths')
 %legend('f = 6 mm', 'f = 10 mm', 'Location', 'northeast')
-legend(legendStrings, 'Location', 'northeast')
+legend(legendStrings, 'Location', 'northwest')
