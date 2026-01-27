@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "misc/Class Notes/Week 2 - 1.20.2026 and 1.22.2026.md",
+                "file": "misc/Class Notes/Week 3 - 1.27.2026 and 1.29.2026.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Week 2 - 1.20.2026 and 1.22.2026"
+              "title": "Week 3 - 1.27.2026 and 1.29.2026"
             }
           }
         ]
@@ -185,6 +185,12 @@
   },
   "active": "6e7ce31f177c611d",
   "lastOpenFiles": [
+    "README.md",
+    "misc/Class Notes/Week 3 - 1.27.2026 and 1.29.2026.md",
+    "misc/Labs/Lab2",
+    "misc/Labs/Lab1/Figure2_Z_Error.fig",
+    "misc/Labs/Lab1/Figure1_Z_vs_d.fig",
+    "misc/Class Notes/Week 2 - 1.20.2026 and 1.22.2026.md",
     "misc/Labs/Lab1/Specified_Model.m",
     "misc/Labs/Lab1/lab1_attempt2.asv",
     "misc/Labs/Lab1/lab1_attempt2.m",
@@ -192,10 +198,6 @@
     "misc/Labs/Lab1/Lab1.asv",
     "misc/Labs/test3.m",
     "misc/Labs/Lab1/testScript2.asv",
-    "misc/Labs/Lab1/testScript2.m",
-    "misc/Labs/Lab1/lab1.mlx",
-    "misc/Labs/Lab1/lab1.m",
-    "misc/Labs/Lab1/testScript.m",
     "misc/Labs/Lab1/smtb/unit_test/featherstone_test/README.md",
     "misc/Labs/Lab1/smtb/doc/info/icons/more_arrows.gif",
     "misc/Labs/Lab1/smtb/doc/info/icons/bullet_orange.gif",
@@ -209,9 +211,7 @@
     "misc/Labs/Lab1/rtb/doc/manual/figs/roblocks.png",
     "misc/Labs/Lab1/rtb/doc/info/icons/more_arrows.gif",
     "misc/Labs/Lab1/rtb/doc/info/icons/bullet_orange.gif",
-    "misc/Class Notes/Week 2 - 1.20.2026 and 1.22.2026.md",
     "Class Notes/Week 2 - 1.20.2026 and 1.22.2026.md",
-    "README.md",
     "Documentation/How to Git.md",
     "Untitled.md",
     "Changelog.md",

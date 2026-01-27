@@ -9,7 +9,7 @@
 % Clears all variables from the script otherwise bad things happen
 clearvars; clc;
 
-%% Camera Spec values
+%% Camera Spec values - Currently Lab Default
 % IFWATER USB Camera 1080P High Speed 5-50mm focal lens (amazon.com)
 % Using this camera to test the variability of the model -- some key values
 %   1920x1080p : 60fps -- pixel size 0.0346mm
@@ -29,8 +29,9 @@ cxRight = xNumPix/2; % right camera x center [px]
 %   depth) will "just work", and no other code will need to be changed to
 %   adjust for either the increased size, or increased number of points.
 % I'm going to use different Frames/Second values for the depth increments
-Z_Random = randi([1, 100]);
-Z_P = linspace(.1, Z_Random, FPS); % Depth values (.1 -> 10 in FPS increments)
+% Z_Random = randi([1, 100]); % This was used in testing to test varying
+%                               depths of the point
+Z_P = linspace(.1, 10, FPS); % Depth values (.1 -> 10 in FPS increments)
 N = numel(Z_P);
 P = [   ones(1,N);
         zeros(1,N);
