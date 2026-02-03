@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "misc/Class Notes/Week 3 - 1.27.2026 and 1.29.2026.md",
+                "file": "misc/Class Notes/Week 4 - 2.3.2026 and 2.5.2026.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Week 3 - 1.27.2026 and 1.29.2026"
+              "title": "Week 4 - 2.3.2026 and 2.5.2026"
             }
           }
         ]
@@ -164,13 +164,23 @@
               "icon": "lucide-list",
               "title": "Outline of README"
             }
+          },
+          {
+            "id": "831075c7b03f1bb3",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
+            }
           }
-        ]
+        ],
+        "currentTab": 5
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -180,13 +190,15 @@
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
-      "bases:Create new base": false
+      "bases:Create new base": false,
+      "obsidian-git:Open Git source control": false
     }
   },
   "active": "6e7ce31f177c611d",
   "lastOpenFiles": [
-    "README.md",
     "misc/Class Notes/Week 3 - 1.27.2026 and 1.29.2026.md",
+    "misc/Class Notes/Week 4 - 2.3.2026 and 2.5.2026.md",
+    "README.md",
     "misc/Labs/Lab2",
     "misc/Labs/Lab1/Figure2_Z_Error.fig",
     "misc/Labs/Lab1/Figure1_Z_vs_d.fig",

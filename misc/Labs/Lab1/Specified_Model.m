@@ -19,8 +19,8 @@ clearvars; clc;
 b = 50; % baseline [mm]
 f = [6, 10];
 ps = .06; % pixel size [mm]
-xNumPix = 720; % total number of pixels in x direction of the sensor [px]
-FPS = 100; % pictures taken / second
+xNumPix = 1920; % total number of pixels in x direction of the sensor [px]
+FPS = 120; % pictures taken / second
 cxLeft = xNumPix/2; % left camera x center [px]
 cxRight = xNumPix/2; % right camera x center [px]
 
