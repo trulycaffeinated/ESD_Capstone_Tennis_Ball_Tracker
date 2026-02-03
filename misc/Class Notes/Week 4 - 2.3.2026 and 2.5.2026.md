@@ -32,3 +32,7 @@ We will probably not be able to use matlab for the image conversion, but it's st
 2. Determine centroid of ball (edge detection, convolution, etc.)
 
 There are certain algorithms that can map to certain colors, but they will not always be accurate
+
+We could use a yCrCb camera to skip a step
+
+**Region of Interest** - where we  know the ball could be, don't process data that we know is worthless (where the ball isn't)
