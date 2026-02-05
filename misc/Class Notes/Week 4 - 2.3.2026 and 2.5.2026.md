@@ -37,3 +37,21 @@ We could use a yCrCb camera to skip a step
 
 **Region of Interest** - where we  know the ball could be, don't process data that we know is worthless (where the ball isn't)
 
+How many false +/-'s can you accept in the design? - Up to us?
+
+```octave
+clear;
+% Import the image
+image = imread('left5.jpg');
+% Convert image to grayscale
+image = rgb2gray(image);
+% display the image
+imshow(image);
+
+% Find the circles in the image (as many as there are)
+[centers, radii, metric] = imfindcircles(image, [15 100])
+% Draw the edges of the circles on the image
+viscircles(centers, radii, 'Edge Color', 'Red');
+```
+**THIS IS SLOW AS HELL ^^^**
+Profile it to see how slow
