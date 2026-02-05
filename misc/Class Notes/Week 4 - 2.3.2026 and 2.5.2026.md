@@ -36,3 +36,4 @@ There are certain algorithms that can map to certain colors, but they will not a
 We could use a yCrCb camera to skip a step
 
 **Region of Interest** - where we  know the ball could be, don't process data that we know is worthless (where the ball isn't)
+
