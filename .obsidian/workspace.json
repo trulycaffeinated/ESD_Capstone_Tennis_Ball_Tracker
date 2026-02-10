@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "misc/Class Notes/Week 4 - 2.3.2026 and 2.5.2026.md",
+                "file": "README.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Week 4 - 2.3.2026 and 2.5.2026"
+              "title": "README"
             }
           }
         ]
@@ -196,6 +196,22 @@
   },
   "active": "6e7ce31f177c611d",
   "lastOpenFiles": [
+    "misc/Labs/Lab3/Lab3.pdf",
+    "~$GroupForms.xlsx",
+    "GroupForms.xlsx",
+    "misc/Class Notes/Week 5 - 2.10.2026 and 2.12.2026.md",
+    "misc/Labs/Lab3/right8.jpg",
+    "misc/Labs/Lab3/right7.jpg",
+    "misc/Labs/Lab3/right6.jpg",
+    "misc/Labs/Lab3/right5.jpg",
+    "misc/Labs/Lab3/left9.jpg",
+    "misc/Labs/Lab3/left8.jpg",
+    "misc/Labs/Lab3/left7.jpg",
+    "misc/Labs/Lab3/left6.jpg",
+    "misc/Labs/Lab3/left5.jpg",
+    "misc/Labs/Lab3/Lab3-2.pdf",
+    "misc/Labs/Lab3/right9.jpg",
+    "Changelog.md",
     "misc/Class Notes/Week 4 - 2.3.2026 and 2.5.2026.md",
     "misc/Labs/Lab3",
     "misc/Class Notes/Week 3 - 1.27.2026 and 1.29.2026.md",
@@ -207,26 +223,12 @@
     "misc/Labs/Lab1/Specified_Model.m",
     "misc/Labs/Lab1/lab1_attempt2.asv",
     "misc/Labs/Lab1/lab1_attempt2.m",
-    "misc/Labs/Lab1/Lab1.m",
-    "misc/Labs/Lab1/Lab1.asv",
-    "misc/Labs/test3.m",
     "misc/Labs/Lab1/smtb/unit_test/featherstone_test/README.md",
-    "misc/Labs/Lab1/smtb/doc/info/icons/more_arrows.gif",
-    "misc/Labs/Lab1/smtb/doc/info/icons/bullet_orange.gif",
-    "misc/Labs/Lab1/smtb/doc/figs/tranimate.gif",
-    "misc/Labs/Lab1/smtb/doc/figs/icon.png",
     "misc/Labs/Lab1/rtb/urdf/README.md",
     "misc/Labs/Lab1/rtb/mex/README.md",
-    "misc/Labs/Lab1/rtb/interfaces/@Create/KeyBoardControl.gif",
-    "misc/Labs/Lab1/rtb/doc/manual/figs/rtb-montage.png",
-    "misc/Labs/Lab1/rtb/doc/manual/figs/roblocks2.png",
-    "misc/Labs/Lab1/rtb/doc/manual/figs/roblocks.png",
-    "misc/Labs/Lab1/rtb/doc/info/icons/more_arrows.gif",
-    "misc/Labs/Lab1/rtb/doc/info/icons/bullet_orange.gif",
     "Class Notes/Week 2 - 1.20.2026 and 1.22.2026.md",
     "Documentation/How to Git.md",
     "Untitled.md",
-    "Changelog.md",
     "test.md"
   ]
 }

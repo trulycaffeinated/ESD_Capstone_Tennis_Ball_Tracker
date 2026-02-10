@@ -36,11 +36,11 @@ Likely tasks...
 - system integration (Everybody - everything coming together)
 - system and subsystem testing **(Jeff preferably)**
 - program management (cost & schedule) 
-- risk assessment and mitigation **(Kinda goes in hand w/ testing but everyone can contribute if they see a risk)**
+- risk assessment and mitigation 
 - Documentation **(Jeff preferably)**
 
 ### 🎯 Core technical pieces
-1. **Ball position accuracy (static camera)** – 15 pts  **(THIS IS *MOSTLY* LAB #1)*
+1. **Ball position accuracy (static camera)** – 15 pts  **(THIS IS *MOSTLY* LAB #1)**
     → How accurate is your 3D position estimate across X/Y/Z?
 2. **Camera motion accuracy (static ball)** – 15 pts  
     → How bad does error get when the camera shifts (wind simulation)?
@@ -54,8 +54,7 @@ Likely tasks...
     - Track **5 volleys**
     - Show **instant replay**
     - GUI matters a LOT here
-6. **Professionalism & documentation** – 10 pts  
-    → This is where teams lose easy points 💀
+6. **Professionalism & documentation** – 10 pts
 ## Group Members
 ---
 Jeff Taylor (jet2898@rit.edu)
