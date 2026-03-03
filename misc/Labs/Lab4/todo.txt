@@ -1,0 +1,9 @@
+Hook tennis.m into calculate button
+-- run blender button
+-- analyze button
+cycle through the images with whatever method is selected
+
+loop through image sets
+- single image currently (leave right camera for later)
+- fix bounding box for all methods
+-- four way bounding box
