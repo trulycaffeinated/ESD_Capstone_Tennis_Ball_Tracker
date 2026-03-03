@@ -56,48 +56,71 @@ def from_linear(linear):
     srgb[~less] = 1.055 * np.power(linear[~less], 1.0 / 2.4) - 0.055
     return srgb * 255.0
     
+def render_from_camera(cam_name):
+    scene = bpy.context.scene
+    cam = bpy.data.objects.get(cam_name)
+    if cam is None:
+        raise RuntimeError(f"Camera '{cam_name}' not found.")
+    scene.camera = cam
+
+    bpy.ops.render.render()
+
+    # Viewer pixels are RGBA floats (linear)
+    pixels = bpy.data.images['Viewer Node'].pixels
+    arr = np.array(pixels[:], dtype=np.float32)     # float RGBA
+    img = np.uint8(from_linear(arr))                # uint8 RGBA (still flat)
+    return img
+
+def render_bytes_from_camera(cam_name):
+    scene = bpy.context.scene
+    cam = bpy.data.objects.get(cam_name)
+    if cam is None:
+        raise RuntimeError(f"Camera '{cam_name}' not found.")
+    scene.camera = cam
+
+    bpy.ops.render.render()
+
+    pixels = bpy.data.images['Viewer Node'].pixels[:]   # float RGBA (linear)
+    arr = np.array(pixels, dtype=np.float32)
+    rgba = np.uint8(from_linear(arr))                   # uint8 RGBA, flat
+
+    return rgba.tobytes()  # IMPORTANT: bytes, not numpy array
+
 def handle_data():
     interval = .1
-    data = None
 
-    # receive floats
-    try:
-        data = conn.recv(32)
-    except:
-        pass
-    
+    # --- receive 8 floats (32 bytes) ---
+    data = conn.recv(32)
+    if not data or len(data) < 32:
+        return interval
+
     floats = struct.unpack('f' * 8, data)
-    
-    
+
     bpy.context.scene.render.resolution_x = int(floats[0])
     bpy.context.scene.render.resolution_y = int(floats[1])
-    
-    # receive text
-    try:
-        data = conn.recv(1024)
-    except:
-        pass
-    
-    text = data.decode("utf-8")
-    
-    # xform object
-    xform_object_by_name(text,floats[2],floats[3],floats[4],floats[5],floats[6],floats[7]) 
-    
-    # render
-    bpy.ops.render.render()
- 
-    # get viewer pixels
-    pixels = bpy.data.images['Viewer Node'].pixels
 
-    # copy buffer to numpy array for faster manipulation
-    arr = np.array(pixels[:])
-        
-    pixels = np.uint8(from_linear(arr))
+    # --- receive 1024 bytes name ---
+    namebuf = conn.recv(1024)
+    if not namebuf:
+        return interval
 
-    if not data:
-        pass
-    else:
-        conn.sendall(pixels)
+    text = namebuf.split(b'\x00', 1)[0].decode("utf-8")
+
+    # --- move object ---
+    xform_object_by_name(text, floats[2], floats[3], floats[4],
+                              floats[5], floats[6], floats[7])
+
+    # --- render both cams ---
+    left_bytes  = render_bytes_from_camera("Camera")
+    right_bytes = render_bytes_from_camera("Camera.001")
+
+    # --- send header: two uint32 sizes (8 bytes) ---
+    header = struct.pack('II', len(left_bytes), len(right_bytes))
+    conn.sendall(header)
+
+    # --- send payloads ---
+    conn.sendall(left_bytes)
+    conn.sendall(right_bytes)
 
     return interval
 
@@ -132,7 +155,7 @@ class TEST_OT_startServer(bpy.types.Operator):
         s.bind((HOST, PORT))
         s.listen()
         conn, addr = s.accept()
-        conn.settimeout(5)
+        conn.settimeout(20)
         connected = True
         bpy.app.timers.register(handle_data)
         return {'FINISHED'}
