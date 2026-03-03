@@ -16,9 +16,14 @@ fprintf(1,"Connected to server\n");
 width = 1920;
 height = 1080;
 
+ImageSets = {};
+
 for counter = 1:10
     image = blenderLink(client,width,height,1,counter,counter,0,0,0,"tennisBall");
+    ImageSet{counter} = image;
     imagesc(image)
     set(gcf, 'Position', get(0, 'Screensize'));
     axis off
 end
+
+ImageSet
