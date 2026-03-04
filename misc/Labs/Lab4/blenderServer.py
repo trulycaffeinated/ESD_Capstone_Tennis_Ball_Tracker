@@ -86,6 +86,12 @@ def render_bytes_from_camera(cam_name):
 
     return rgba.tobytes()  # IMPORTANT: bytes, not numpy array
 
+def get_object_location_by_name(object_name):
+    obj = bpy.data.objects.get(object_name)
+    if obj is None:
+        return (float('nan'), float('nan'), float('nan'))
+    return (obj.location.x, obj.location.y, obj.location.z)
+
 def handle_data():
     interval = .1
 
@@ -107,7 +113,7 @@ def handle_data():
     text = namebuf.split(b'\x00', 1)[0].decode("utf-8")
 
     # --- move object ---
-    xform_object_by_name(text, floats[2], floats[3], 4,
+    xform_object_by_name(text, floats[2], floats[3], floats[4],
                               floats[5], floats[6], floats[7])
 
     # --- render both cams ---
@@ -121,6 +127,9 @@ def handle_data():
     # --- send payloads ---
     conn.sendall(left_bytes)
     conn.sendall(right_bytes)
+    
+    loc = get_object_location_by_name(text)
+    conn.sendall(struct.pack('fff', *loc))  # 12 bytes: x,y,z
 
     return interval
 
