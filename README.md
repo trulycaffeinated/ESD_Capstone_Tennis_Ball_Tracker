@@ -28,11 +28,17 @@ Now with any edits you make, it should be pretty easy to commit and push up chan
 ## Project Description and Matlab Intro
 ---
 Kaishaun Nicholas - Firmware (Snickerdoodle VHDL) + software (Matlab to Snickerdoodle wifi Interface) + Assist with software (gui programming) + Acting project manager 
+
 Befekir Belayneh - Snickerdoodle VHDL algorithm development + WiFi interface
+
 Jeff Taylor	- "System and Subsystem Testing Calculations - System Accuracy / Coefficient of Restitution Integration Documentation"
+
 Gerald Lynch - GUI , Documentation
+
 Talitha Sutton -	Matlab, Assist with GUI, Business Perspective, Tennis Research
+
 Areeb Majid	- Finance Specialist, Blender/Matlab/OpenCV, Documentation, HR
+
 
 ### 🎯 Core technical pieces
 1. **Ball position accuracy (static camera)** – 15 pts  **(THIS IS *MOSTLY* LAB #1)**
@@ -53,8 +59,13 @@ Areeb Majid	- Finance Specialist, Blender/Matlab/OpenCV, Documentation, HR
 ## Group Members
 ---
 Kaishaun Nicholas (kan6526@rit.edu)
+
 Befekir Belayneh (bdb4290@rit.edu)
+
 Gerald Lynch (gal9036@rit.edu)
+
 Talitha Sutton (tks8012@rit.edu)
+
 Areeb Majid (atm8256@rit.edu)
+
 Jeff Taylor (jet2898@rit.edu)
