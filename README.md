@@ -27,17 +27,12 @@ I would recommend creating a system environment variable for wherever you save t
 Now with any edits you make, it should be pretty easy to commit and push up changes
 ## Project Description and Matlab Intro
 ---
-Likely tasks...
-- system architecture **(group) (PRD)**
-- firmware (labs)
-- software (labs)
-- gui (labs) (LAB 2)
-- algorithm development (labs)
-- system integration (Everybody - everything coming together)
-- system and subsystem testing **(Jeff preferably)**
-- program management (cost & schedule) 
-- risk assessment and mitigation 
-- Documentation **(Jeff preferably)**
+Kaishaun Nicholas - Firmware (Snickerdoodle VHDL) + software (Matlab to Snickerdoodle wifi Interface) + Assist with software (gui programming) + Acting project manager 
+Befekir Belayneh - Snickerdoodle VHDL algorithm development + WiFi interface
+Jeff Taylor	- "System and Subsystem Testing Calculations - System Accuracy / Coefficient of Restitution Integration Documentation"
+Gerald Lynch - GUI , Documentation
+Talitha Sutton -	Matlab, Assist with GUI, Business Perspective, Tennis Research
+Areeb Majid	- Finance Specialist, Blender/Matlab/OpenCV, Documentation, HR
 
 ### 🎯 Core technical pieces
 1. **Ball position accuracy (static camera)** – 15 pts  **(THIS IS *MOSTLY* LAB #1)**
@@ -57,4 +52,9 @@ Likely tasks...
 6. **Professionalism & documentation** – 10 pts
 ## Group Members
 ---
+Kaishaun Nicholas (kan6526@rit.edu)
+Befekir Belayneh (bdb4290@rit.edu)
+Gerald Lynch (gal9036@rit.edu)
+Talitha Sutton (tks8012@rit.edu)
+Areeb Majid (atm8256@rit.edu)
 Jeff Taylor (jet2898@rit.edu)
