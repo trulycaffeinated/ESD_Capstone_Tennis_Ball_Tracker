@@ -1,0 +1,5 @@
+rgbFilter_2024a/rgb_filter/Subsystem1/comparison --> rgb_filte_ip_src_comparison
+rgbFilter_2024a/rgb_filter/Subsystem1/comparison1 --> rgb_filte_ip_src_comparison1
+rgbFilter_2024a/rgb_filter/Subsystem1/comparison2 --> rgb_filte_ip_src_comparison2
+rgbFilter_2024a/rgb_filter/Subsystem1 --> rgb_filte_ip_src_Subsystem1
+rgbFilter_2024a/rgb_filter --> rgb_filte_ip_src_rgb_filter
