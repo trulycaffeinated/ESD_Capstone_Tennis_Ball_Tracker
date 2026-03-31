@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Wed Mar  5 16:49:00 2025
+# Process ID: 8516
+# Current directory: C:/dkaputa/courses/563-embeddesSystemsDesignTwo_2025/lecture14/referenceDesign/hdl_prj/vivado_ip_prj
+# Command line: vivado.exe -mode batch -notrace -source vivado_insert_ip.tcl
+# Log file: C:/dkaputa/courses/563-embeddesSystemsDesignTwo_2025/lecture14/referenceDesign/hdl_prj/vivado_ip_prj/vivado.log
+# Journal file: C:/dkaputa/courses/563-embeddesSystemsDesignTwo_2025/lecture14/referenceDesign/hdl_prj/vivado_ip_prj\vivado.jou
+#-----------------------------------------------------------
+source vivado_insert_ip.tcl -notrace

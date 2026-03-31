@@ -1,0 +1,5 @@
+ --> conv_core_ip_src_conv_core_pkg
+sobelFilter2024a/conv_core/Subsystem1/slicer/SimpleDualPortRAM_generic --> conv_core_ip_src_SimpleDualPortRAM_generic
+sobelFilter2024a/conv_core/Subsystem1/slicer --> conv_core_ip_src_slicer
+sobelFilter2024a/conv_core/Subsystem1 --> conv_core_ip_src_Subsystem1
+sobelFilter2024a/conv_core --> conv_core_ip_src_conv_core

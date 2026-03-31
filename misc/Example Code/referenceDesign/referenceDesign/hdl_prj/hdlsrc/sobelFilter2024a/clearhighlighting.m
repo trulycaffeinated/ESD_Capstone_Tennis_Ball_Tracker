@@ -1,0 +1,12 @@
+SLStudio.Utils.RemoveHighlighting(get_param('sobelFilter2024a', 'handle'));
+SLStudio.Utils.RemoveHighlighting(get_param('gm_sobelFilter2024a', 'handle'));
+annotate_port('gm_sobelFilter2024a/conv_core/Subsystem1', 0, 1, '');
+annotate_port('gm_sobelFilter2024a/conv_core/Reshape', 1, 1, '');
+annotate_port('sobelFilter2024a/conv_core/Reshape', 1, 1, '');
+annotate_port('gm_sobelFilter2024a/conv_core/t', 1, 1, '');
+annotate_port('gm_sobelFilter2024a/conv_core/Transpose', 1, 1, '');
+annotate_port('sobelFilter2024a/conv_core/Transpose', 1, 1, '');
+annotate_port('gm_sobelFilter2024a/conv_core/Subsystem1/Delay1', 0, 1, '');
+annotate_port('gm_sobelFilter2024a/conv_core/Subsystem1/Delay2', 1, 1, '');
+annotate_port('gm_sobelFilter2024a/conv_core/Subsystem1/Bit Concat', 0, 1, '');
+annotate_port('gm_sobelFilter2024a/conv_core/Subsystem1/Sum of Elements', 0, 1, '');
