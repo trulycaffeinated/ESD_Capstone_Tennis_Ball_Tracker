@@ -114,7 +114,7 @@ def handle_data():
     text = namebuf.split(b'\x00', 1)[0].decode("utf-8")
 
     # --- move object ---
-    xform_object_by_name(text, floats[2], floats[3], 3,
+    xform_object_by_name(text, floats[2], floats[3], floats[4],
                               floats[5], floats[6], floats[7])
 
     # --- render both cams ---
