@@ -185,15 +185,21 @@ def get_object_location_by_name(object_name):
         return (float('nan'), float('nan'), float('nan'))
     return (obj.location.x, obj.location.y, obj.location.z)
 
-def get_camera_pose_by_name(camera_name):
+def get_camera_pose_matrix_by_name(camera_name):
     cam = bpy.data.objects.get(camera_name)
     if cam is None:
         nan3 = (float('nan'), float('nan'), float('nan'))
-        return nan3, nan3
+        nan9 = (float('nan'),) * 9
+        return nan3, nan9
 
     loc = (cam.location.x, cam.location.y, cam.location.z)
-    rot = (cam.rotation_euler.x, cam.rotation_euler.y, cam.rotation_euler.z)
-    return loc, rot
+    R = cam.matrix_world.to_3x3()
+    rot9 = (
+        R[0][0], R[0][1], R[0][2],
+        R[1][0], R[1][1], R[1][2],
+        R[2][0], R[2][1], R[2][2],
+    )
+    return loc, rot9
 
 # --- Networking loop ---
 def handle_data():
@@ -231,14 +237,15 @@ def handle_data():
     obj_loc = get_object_location_by_name(text)
     conn.sendall(struct.pack('fff', *obj_loc))
 
-    # Camera poses
-    camL_loc, camL_rot = get_camera_pose_by_name("Camera")
-    camR_loc, camR_rot = get_camera_pose_by_name("Camera.001")
+    # Camera poses: location + 3x3 world rotation matrix
+    camL_loc, camL_rot9 = get_camera_pose_matrix_by_name("Camera")
+    camR_loc, camR_rot9 = get_camera_pose_matrix_by_name("Camera.001")
 
     conn.sendall(struct.pack('fff', *camL_loc))
-    conn.sendall(struct.pack('fff', *camL_rot))
+    conn.sendall(struct.pack('fffffffff', *camL_rot9))
+
     conn.sendall(struct.pack('fff', *camR_loc))
-    conn.sendall(struct.pack('fff', *camR_rot))
+    conn.sendall(struct.pack('fffffffff', *camR_rot9))
 
     return interval
 
