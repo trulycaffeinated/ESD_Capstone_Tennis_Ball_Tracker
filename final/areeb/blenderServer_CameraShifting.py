@@ -18,7 +18,8 @@ initial_camL_loc = None
 initial_camR_loc = None
 initial_camL_rot = None
 initial_camR_rot = None
-initial_center = None
+initial_baseline = None
+last_yaw = None
 
 # --- Compositor setup ---
 bpy.context.scene.use_nodes = True
@@ -42,7 +43,7 @@ links.new(rl.outputs[0], v.inputs[0])
 def save_initial_stereo_pose():
     global initial_camL_loc, initial_camR_loc
     global initial_camL_rot, initial_camR_rot
-    global initial_center
+    global initial_baseline
 
     camL = bpy.data.objects.get("Camera")
     camR = bpy.data.objects.get("Camera.001")
@@ -55,16 +56,14 @@ def save_initial_stereo_pose():
     initial_camR_loc = camR.location.copy()
     initial_camL_rot = camL.rotation_euler.copy()
     initial_camR_rot = camR.rotation_euler.copy()
-
-    # Midpoint of the two cameras = orbit center
-    initial_center = (initial_camL_loc + initial_camR_loc) / 2.0
+    initial_baseline = initial_camR_loc - initial_camL_loc
 
     print("Initial stereo pose saved.")
     print(f"  Left location:  {initial_camL_loc}")
     print(f"  Right location: {initial_camR_loc}")
     print(f"  Left rotation:  {initial_camL_rot}")
     print(f"  Right rotation: {initial_camR_rot}")
-    print(f"  Orbit center:   {initial_center}")
+    print(f"  Baseline:       {initial_baseline}")
 
     return True
 
@@ -94,18 +93,11 @@ def reset_to_initial_stereo_pose():
     return True
 
 
-# --- Stereo rig transform (MATLAB drives LEFT camera delta; Python reconstructs RIGHT camera) ---
+# --- Stereo rig transform (relative motion) ---
 def xform_stereo_rig(dx, dy, dz, pitch, roll, yaw):
-    """
-    MATLAB sends dx,dy,dz as the LEFT camera's offset from its initial position.
-    This function:
-      1) moves the left camera using that delta
-      2) computes the right camera as the point mirrored across the saved center
-      3) applies incoming rotation deltas relative to each camera's own initial rotation
-    """
     global initial_camL_loc, initial_camR_loc
     global initial_camL_rot, initial_camR_rot
-    global initial_center
+    global last_yaw
 
     camL = bpy.data.objects.get("Camera")
     camR = bpy.data.objects.get("Camera.001")
@@ -114,21 +106,37 @@ def xform_stereo_rig(dx, dy, dz, pitch, roll, yaw):
         print("Stereo cameras not found.")
         return
 
-    if initial_camL_loc is None or initial_camR_loc is None:
+    if initial_camL_loc is None:
         ok = save_initial_stereo_pose()
         if not ok:
             return
 
-    delta_pos = Vector((dx, dy, dz))
+    # --- Detect full rotation ---
+    if last_yaw is not None:
+        if yaw < last_yaw:
+            print("Full orbit complete — resetting pose")
+            reset_to_initial_stereo_pose()
+            last_yaw = yaw
+            return
 
-    # LEFT camera follows MATLAB exactly
-    camL.location = initial_camL_loc + delta_pos
+    last_yaw = yaw
 
-    # RIGHT camera is mirrored through the orbit center
-    # If center is C and left is L, then right = 2C - L
-    camR.location = (2.0 * initial_center) - camL.location
+    theta = math.radians(yaw)
+    c = math.cos(theta)
+    s = math.sin(theta)
 
-    # Apply rotation deltas relative to each camera's own initial rotation
+    def rotate_z(v):
+        return Vector((
+            c * v.x - s * v.y,
+            s * v.x + c * v.y,
+            v.z
+        ))
+
+    # Rotate around world origin in XY, keep original Z
+    camL.location = rotate_z(initial_camL_loc)
+    camR.location = rotate_z(initial_camR_loc)
+
+    # rotation stays relative
     pitchRad = math.radians(pitch)
     rollRad = math.radians(roll)
     yawRad = math.radians(yaw)
@@ -177,6 +185,15 @@ def get_object_location_by_name(object_name):
         return (float('nan'), float('nan'), float('nan'))
     return (obj.location.x, obj.location.y, obj.location.z)
 
+def get_camera_pose_by_name(camera_name):
+    cam = bpy.data.objects.get(camera_name)
+    if cam is None:
+        nan3 = (float('nan'), float('nan'), float('nan'))
+        return nan3, nan3
+
+    loc = (cam.location.x, cam.location.y, cam.location.z)
+    rot = (cam.rotation_euler.x, cam.rotation_euler.y, cam.rotation_euler.z)
+    return loc, rot
 
 # --- Networking loop ---
 def handle_data():
@@ -210,8 +227,18 @@ def handle_data():
     conn.sendall(left_bytes)
     conn.sendall(right_bytes)
 
-    loc = get_object_location_by_name(text)
-    conn.sendall(struct.pack('fff', *loc))
+    # Object location
+    obj_loc = get_object_location_by_name(text)
+    conn.sendall(struct.pack('fff', *obj_loc))
+
+    # Camera poses
+    camL_loc, camL_rot = get_camera_pose_by_name("Camera")
+    camR_loc, camR_rot = get_camera_pose_by_name("Camera.001")
+
+    conn.sendall(struct.pack('fff', *camL_loc))
+    conn.sendall(struct.pack('fff', *camL_rot))
+    conn.sendall(struct.pack('fff', *camR_loc))
+    conn.sendall(struct.pack('fff', *camR_rot))
 
     return interval
 
@@ -256,6 +283,7 @@ class TEST_OT_startServer(bpy.types.Operator):
         HOST = '127.0.0.1'
         PORT = 55001
 
+        # Save initial pose at server start too
         ok = save_initial_stereo_pose()
         if not ok:
             self.report({'ERROR'}, "Could not save initial stereo pose.")
