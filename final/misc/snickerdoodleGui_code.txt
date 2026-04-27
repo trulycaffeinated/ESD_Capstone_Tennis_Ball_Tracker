@@ -1,0 +1,2046 @@
+classdef gui < matlab.apps.AppBase
+
+    % Properties that correspond to app components
+    properties (Access = public)
+        UIFigure                      matlab.ui.Figure
+        Panel                         matlab.ui.container.Panel
+        ConnecttoSnickerdoodleButton  matlab.ui.control.Button
+        CalculateButton               matlab.ui.control.Button
+        ResetCalculationsButton       matlab.ui.control.Button
+        RunBlenderButton              matlab.ui.control.Button
+        RightCameraRegionofInterestManualPanel  matlab.ui.container.Panel
+        UseImageBoundingCheckBox_2    matlab.ui.control.CheckBox
+        colRight_EF_2                 matlab.ui.control.NumericEditField
+        xmLabel_12                    matlab.ui.control.Label
+        colRight_Slider_2             matlab.ui.control.Slider
+        colLeft_EF_2                  matlab.ui.control.NumericEditField
+        xmLabel_11                    matlab.ui.control.Label
+        colLeft_Slider_2              matlab.ui.control.Slider
+        rowBottom_EF_2                matlab.ui.control.NumericEditField
+        xmLabel_10                    matlab.ui.control.Label
+        rowBottom_Slider_2            matlab.ui.control.Slider
+        rowTop_EF_2                   matlab.ui.control.NumericEditField
+        xmLabel_9                     matlab.ui.control.Label
+        rowTop_Slider_2               matlab.ui.control.Slider
+        DisparityPanel                matlab.ui.container.Panel
+        GridLayout2                   matlab.ui.container.GridLayout
+        GridLayout3                   matlab.ui.container.GridLayout
+        ErrorCloud_Axes               matlab.ui.control.UIAxes
+        PercentError_Axes             matlab.ui.control.UIAxes
+        ActualVsCal_Axes              matlab.ui.control.UIAxes
+        LeftCameraRegionofInterestManualPanel  matlab.ui.container.Panel
+        UseImageBoundingCheckBox      matlab.ui.control.CheckBox
+        colRight_EF                   matlab.ui.control.NumericEditField
+        xmLabel_8                     matlab.ui.control.Label
+        colRight_Slider               matlab.ui.control.Slider
+        colLeft_EF                    matlab.ui.control.NumericEditField
+        xmLabel_7                     matlab.ui.control.Label
+        colLeft_Slider                matlab.ui.control.Slider
+        rowBottom_EF                  matlab.ui.control.NumericEditField
+        xmLabel_6                     matlab.ui.control.Label
+        rowBottom_Slider              matlab.ui.control.Slider
+        rowTop_EF                     matlab.ui.control.NumericEditField
+        xmLabel_5                     matlab.ui.control.Label
+        rowTop_Slider                 matlab.ui.control.Slider
+        CameraPanel                   matlab.ui.container.Panel
+        CamRows_EF                    matlab.ui.control.NumericEditField
+        CamRows_Slider                matlab.ui.control.Slider
+        CamCol_EF                     matlab.ui.control.NumericEditField
+        xmLabel_4                     matlab.ui.control.Label
+        CamCol_Slider                 matlab.ui.control.Slider
+        pixelSize_EF                  matlab.ui.control.NumericEditField
+        xmLabel_2                     matlab.ui.control.Label
+        pixelSize_Slider              matlab.ui.control.Slider
+        focalLength_EF                matlab.ui.control.NumericEditField
+        xmLabel                       matlab.ui.control.Label
+        focalLength_Slider            matlab.ui.control.Slider
+        X                             matlab.ui.control.Label
+        ImageOutputsPanel             matlab.ui.container.Panel
+        GridLayout                    matlab.ui.container.GridLayout
+        UIAxes4                       matlab.ui.control.UIAxes
+        UIAxes3                       matlab.ui.control.UIAxes
+        UIAxes2                       matlab.ui.control.UIAxes
+        UIAxes                        matlab.ui.control.UIAxes
+        DSpectrogramOutputPanel       matlab.ui.container.Panel
+        RIghtCameraPositionLabel      matlab.ui.control.Label
+        LeftCameraPositionLabel       matlab.ui.control.Label
+        LeftCam_XCord                 matlab.ui.control.NumericEditField
+        XCordLabel_6                  matlab.ui.control.Label
+        LeftCam_ZCord                 matlab.ui.control.NumericEditField
+        ZCordEditFieldLabel_4         matlab.ui.control.Label
+        LeftCam_YCord                 matlab.ui.control.NumericEditField
+        YCordEditFieldLabel_4         matlab.ui.control.Label
+        RightCam_XCord                matlab.ui.control.NumericEditField
+        XCordLabel_5                  matlab.ui.control.Label
+        RightCam_ZCord                matlab.ui.control.NumericEditField
+        ZCordEditFieldLabel_3         matlab.ui.control.Label
+        RightCam_YCord                matlab.ui.control.NumericEditField
+        YCordEditFieldLabel_3         matlab.ui.control.Label
+        XCord_actual                  matlab.ui.control.NumericEditField
+        XCordLabel_4                  matlab.ui.control.Label
+        ActualBallPositionLabel_2     matlab.ui.control.Label
+        ZCord_actual                  matlab.ui.control.NumericEditField
+        ZCordEditFieldLabel_2         matlab.ui.control.Label
+        YCord_actual                  matlab.ui.control.NumericEditField
+        YCordEditFieldLabel_2         matlab.ui.control.Label
+        XCord_LC_EF                   matlab.ui.control.NumericEditField
+        XCordLabel_3                  matlab.ui.control.Label
+        XCord_RC_EF                   matlab.ui.control.NumericEditField
+        XCordLabel_2                  matlab.ui.control.Label
+        XCord_3D_EF                   matlab.ui.control.NumericEditField
+        XCordLabel                    matlab.ui.control.Label
+        RuntimemsEditField            matlab.ui.control.NumericEditField
+        RuntimemsEditFieldLabel       matlab.ui.control.Label
+        CalculatedBallPositionLabel   matlab.ui.control.Label
+        RightCameraOriginBallPositionLabel  matlab.ui.control.Label
+        LeftCameraOriginBallPositionLabel  matlab.ui.control.Label
+        YCord_LC_EF                   matlab.ui.control.NumericEditField
+        YCordEditField_3Label         matlab.ui.control.Label
+        YCord_RC_EF                   matlab.ui.control.NumericEditField
+        YCordEditField_2Label         matlab.ui.control.Label
+        ZCord_3D_EF                   matlab.ui.control.NumericEditField
+        ZCordEditFieldLabel           matlab.ui.control.Label
+        YCord_3D_EF                   matlab.ui.control.NumericEditField
+        YCordEditFieldLabel           matlab.ui.control.Label
+        MethodPanel                   matlab.ui.container.Panel
+        ColorMethodDropDown           matlab.ui.control.DropDown
+        ColorMethodDropDownLabel      matlab.ui.control.Label
+        ImageSelectionPanel           matlab.ui.container.Panel
+        PreviousImageButton           matlab.ui.control.Button
+        NextImageButton               matlab.ui.control.Button
+        PlayButton                    matlab.ui.control.Button
+    end
+
+    properties (Access = private)
+        ImageSets cell = {}         % each entry: {leftImg, rightImg(optional)}
+        SetID (1,1) double = 1      % current index
+        PlayTimer timer             % for Play button
+        IsPlaying logical = false   % play/pause
+
+        % Server INIT parameters
+        server_ip   = '127.0.0.1';     %IP address of the Unity Server
+        server_port = 55001;           %Server Port of the Unity Sever
+
+        snickerdoodle_ip = '192.168.0.33'; % ip address of network
+        snickerdoodle_port = 9999; % server port of snickerdoodle
+        snickClient;
+
+        IsProcessing logical = false;
+
+        FrameCounter double = 0
+        FrameHistory double = []
+        
+        % History arrays
+        CalcXYZHistory double = []   % Nx3: [x y z]
+        ActXYZHistory  double = []   % Nx3: [x y z]
+        PctErrHistory  double = []   % Nx3: [%Ex %Ey %Ez]
+        
+        % Line handles (top axes: 6 lines, bottom axes: 3 lines)
+        LineCalc matlab.graphics.chart.primitive.Line = matlab.graphics.chart.primitive.Line.empty
+        LineAct  matlab.graphics.chart.primitive.Line = matlab.graphics.chart.primitive.Line.empty
+        LineErr  matlab.graphics.chart.primitive.Line = matlab.graphics.chart.primitive.Line.empty
+        ErrorScatter matlab.graphics.chart.primitive.Scatter = matlab.graphics.chart.primitive.Scatter.empty
+
+        ballLocation = [] % Description
+        BallLocationHistory double = []   % Nx3
+
+        camL_Location double = [NaN NaN NaN]
+        camL_Rotation double = [NaN NaN NaN]
+        camR_Location double = [NaN NaN NaN]
+        camR_Rotation double = [NaN NaN NaN]
+
+        LeftCamLocationHistory  double = []   % Nx3
+        LeftCamRotationHistory  double = []   % Nx3
+        RightCamLocationHistory double = []   % Nx3
+        RightCamRotationHistory double = []   % Nx3
+
+        camL_RotationMatrix double = eye(3)
+        camR_RotationMatrix double = eye(3)
+        
+        LeftCamRotationMatrixHistory  double = zeros(3,3,0)
+        RightCamRotationMatrixHistory double = zeros(3,3,0)
+    end
+    
+    methods (Access = private)
+        
+        function releaseProcessing(app)
+            app.IsProcessing = false;
+        end
+
+        function exportResultsToExcel(app)
+            nFrame = numel(app.FrameHistory);
+            nAct   = size(app.ActXYZHistory, 1);
+            nCalc  = size(app.CalcXYZHistory, 1);
+            nErr   = size(app.PctErrHistory, 1);
+        
+            n = min([nFrame, nAct, nCalc, nErr]);
+        
+            if n == 0
+                warning("No valid calculated data available to export.");
+                return;
+            end
+        
+            if size(app.ActXYZHistory,2) < 3 || ...
+               size(app.CalcXYZHistory,2) < 3 || ...
+               size(app.PctErrHistory,2) < 3
+                error("History arrays are not Nx3. Export aborted.");
+            end
+        
+            T = table();
+            T.Frame = app.FrameHistory(1:n)';
+        
+            % Actual
+            T.Act_X = app.ActXYZHistory(1:n,1);
+            T.Act_Y = app.ActXYZHistory(1:n,2);
+            T.Act_Z = app.ActXYZHistory(1:n,3);
+        
+            % Calculated
+            T.Calc_X = app.CalcXYZHistory(1:n,1);
+            T.Calc_Y = app.CalcXYZHistory(1:n,2);
+            T.Calc_Z = app.CalcXYZHistory(1:n,3);
+        
+            % Percent error
+            T.PctErr_X = app.PctErrHistory(1:n,1);
+            T.PctErr_Y = app.PctErrHistory(1:n,2);
+            T.PctErr_Z = app.PctErrHistory(1:n,3);
+        
+            % Absolute error
+            T.Err_X = T.Calc_X - T.Act_X;
+            T.Err_Y = T.Calc_Y - T.Act_Y;
+            T.Err_Z = T.Calc_Z - T.Act_Z;
+        
+            writetable(T, fullfile(pwd, 'triangulation_results.xlsx'));
+        end
+
+        function [u, v, dbg, center, radius] = grayscaleFindCentroid(app, img)
+            %#ok<INUSD> % app not used here, kept for consistent signature
+        
+            grayImg = rgb2gray(img);
+        
+            eq = adapthisteq(grayImg);
+
+            [centers, radii, metric] = imfindcircles(eq, ...
+                [5,25], ...                   % radius search range
+                'ObjectPolarity','bright',...   % detect bright circles
+                'Sensitivity',0.95);              % detection sensitivity
+        
+            if isempty(centers)
+                error('No circles detected (Grayscale).');
+            end
+        
+            if radii < 13
+                [centers, radii] = imfindcircles(eq, ...
+                [5,25], ...                   % radius search range
+                'ObjectPolarity','dark',...   % detect dark circles
+                'Sensitivity',0.97);          % detection sensitivity
+            end
+
+            [~, i] = max(metric);
+        
+            center = centers(i, :);
+            radius = radii(i);
+        
+            u = center(1);
+            v = center(2);
+        
+            dbg = grayImg;
+        end
+
+        function [u, v, dbg, center, radius] = bwFindCentroid(app, img) 
+            %#ok<INUSD> % app not used here, kept for consistent signature       
+            grayImg = rgb2gray(img);
+            bw = imbinarize(grayImg);
+        
+            % Clean up (tune these if needed)
+            bw = bwareaopen(bw, 200);       % remove small specks
+            bw = imfill(bw, 'holes');       % fill ball interior holes
+        
+            cc = bwconncomp(bw);
+            if cc.NumObjects == 0
+                error('No blobs detected (Binarize).');
+            end
+        
+            % Largest blob assumed to be the ball
+            numPixels = cellfun(@numel, cc.PixelIdxList);
+            [~, idx] = max(numPixels);
+        
+            ballMask = false(size(bw));
+            ballMask(cc.PixelIdxList{idx}) = true;
+        
+            stats = regionprops(ballMask, 'Centroid', 'Area');
+            if isempty(stats)
+                error('No centroid found (Binarize).');
+            end
+        
+            center = stats.Centroid;      % [u v]
+            u = center(1);
+            v = center(2);
+        
+            radius = sqrt(stats.Area/pi); % equivalent radius from area
+        
+            dbg = ballMask;               % nice debug image
+        end
+
+        function [u, v, dbg, center, radius] = yCbCrFindCentroid(app, img)
+            %#ok<INUSD> % app not used here, kept for consistent signature
+        
+            ycc = rgb2ycbcr(img);
+            Y  = ycc(:,:,1);
+            Cb = ycc(:,:,2);
+            Cr = ycc(:,:,3);
+        
+            % Color threshold (tune for your tennis ball / lighting)
+            colorMask = (Cr > 120) & (Cb < 120);
+        
+            % Clean mask
+            mask = bwareaopen(colorMask, 200);
+            mask = imfill(mask, 'holes');
+        
+            % Debug / detection image: keep only masked Y channel
+            dbg = Y;
+            dbg(~mask) = 0;
+        
+            [centers, radii, metric] = imfindcircles(dbg, [15 200], ...
+                'ObjectPolarity', 'bright', ...
+                'Sensitivity', 0.95);
+        
+            if isempty(centers)
+                error('No circles detected (YCbCr).');
+            end
+        
+            [~, i] = max(metric);
+        
+            center = centers(i, :);
+            radius = radii(i);
+        
+            u = center(1);
+            v = center(2);
+        end
+
+        function [u, v, dbg, center, radius] = hsvFindCentroid(app, img)
+            %#ok<INUSD> % app not used directly, kept for consistent signature
+        
+            % Convert to HSV
+            hsvImg = rgb2hsv(img);
+            H = hsvImg(:, :, 1);
+            S = hsvImg(:, :, 2);
+            V = hsvImg(:, :, 3);
+        
+            % Thresholds for tennis ball color
+            hueMask = (H > 0.18 & H < 0.20);
+            satMask = (S > 0 & S < 1);
+            valMask = (V > 0 & V < 1);
+        
+            % Final binary mask
+            finalMask = hueMask & satMask & valMask;
+        
+            % Cleanup
+            finalMask = bwareaopen(finalMask, 50);
+            finalMask = imfill(finalMask, 'holes');
+        
+            % Fail if nothing found
+            if ~any(finalMask(:))
+                error('No valid HSV region found.');
+            end
+        
+            %% REGION BOUNDING
+            topRow    = find(any(finalMask, 2), 1, 'first');
+            bottomRow = find(any(finalMask, 2), 1, 'last');
+            leftCol   = find(any(finalMask, 1), 1, 'first');
+            rightCol  = find(any(finalMask, 1), 1, 'last');
+        
+            if isempty(topRow) || isempty(bottomRow) || isempty(leftCol) || isempty(rightCol)
+                error('No valid region found in HSV mask.');
+            end
+        
+            % Crop mask to bounded region
+            croppedMask = finalMask(topRow:bottomRow, leftCol:rightCol);
+        
+            % Region properties
+            stats = regionprops(croppedMask, ...
+                'Area', 'BoundingBox', 'Centroid', ...
+                'MajorAxisLength', 'MinorAxisLength', 'Eccentricity');
+        
+            if isempty(stats)
+                error('No centroid found in cropped HSV region.');
+            end
+        
+            % Pick largest region if more than one exists
+            [~, idx] = max([stats.Area]);
+            statsMain = stats(idx);
+        
+            % Centroid in cropped coordinates
+            c = statsMain.Centroid;
+        
+            % Convert centroid back to ROI image coordinates
+            u = c(1) + leftCol - 1;
+            v = c(2) + topRow - 1;
+            center = [u, v];
+        
+            % Estimate radius from area
+            radius = sqrt(statsMain.Area / pi);
+        
+            % Debug image: masked RGB image is nicer than raw HSV for display
+            dbg = img;
+            dbg(repmat(~finalMask, [1 1 3])) = 0;
+        end
+
+        %% DEPRECEATED
+        function [z, x, y, d] = find3DCentroid(app, fpx, b, uL, vL, uR, cX, cY)
+            %#ok<INUSD>  % app not used (suppresses warning)
+            d = uL - uR; % disparity 
+
+            z = (fpx * b) / d; % depth [mm]
+            x = (uL - cX) * z / fpx; % x cord [mm]
+            y = -(vL - cY) * z / fpx; % y cord [mm]
+        end
+        %% DEPRECEATED
+
+        function Xw = triangulateDLT(app, PL, PR, uL, vL, uR, vR)
+            %#ok<INUSD>
+            A = [
+                uL * PL(3,:) - PL(1,:);
+                vL * PL(3,:) - PL(2,:);
+                uR * PR(3,:) - PR(1,:);
+                vR * PR(3,:) - PR(2,:);
+            ];
+        
+            [~, ~, V] = svd(A, 0);
+            Xh = V(:, end);
+            Xh = Xh ./ Xh(4);
+        
+            Xw = Xh(1:3);   % world coordinates
+        end
+
+        function P = buildProjectionMatrix(app, camPos_m, Rwc_blender, W, H)
+            %#ok<INUSD>
+        
+            % Intrinsics
+            f_m  = 11e-3;
+            px_m = 19e-6;
+            fpx  = f_m / px_m;
+            cX   = W / 2;
+            cY   = H / 2;
+        
+            K = [fpx 0   cX;
+                 0   fpx cY;
+                 0   0   1];
+        
+            % Blender camera local axes -> CV camera axes
+            % Blender local: +X right, +Y up, -Z forward
+            % CV/slides:     +X right, +Y down, +Z forward
+            Rfix = diag([1 -1 -1]);
+        
+            % world->camera rotation in CV convention
+            Rcw = Rfix * Rwc_blender';
+        
+            % translation
+            Cw = camPos_m(:);
+            t = -Rcw * Cw;
+        
+            P = K * [Rcw t];
+        end
+
+        function showCurrentSet(app)
+            if isempty(app.ImageSets); return; end
+        
+            app.SetID = max(1, min(app.SetID, numel(app.ImageSets)));
+        
+            app.ballLocation = app.BallLocationHistory(app.SetID,:);
+        
+            app.camL_Location = app.LeftCamLocationHistory(app.SetID,:);
+            app.camR_Location = app.RightCamLocationHistory(app.SetID,:);
+        
+            app.camL_RotationMatrix = app.LeftCamRotationMatrixHistory(:,:,app.SetID);
+            app.camR_RotationMatrix = app.RightCamRotationMatrixHistory(:,:,app.SetID);
+        
+            % Update camera position GUI fields
+            app.LeftCam_XCord.Value  = app.camL_Location(1);
+            app.LeftCam_YCord.Value  = app.camL_Location(2);
+            app.LeftCam_ZCord.Value  = app.camL_Location(3);
+        
+            app.RightCam_XCord.Value = app.camR_Location(1);
+            app.RightCam_YCord.Value = app.camR_Location(2);
+            app.RightCam_ZCord.Value = app.camR_Location(3);
+        
+            leftIm = app.ImageSets{app.SetID}{1};
+        
+            imshow(leftIm, 'Parent', app.UIAxes);
+        
+            if numel(app.ImageSets{app.SetID}) >= 2 && ~isempty(app.ImageSets{app.SetID}{2})
+                imshow(app.ImageSets{app.SetID}{2}, 'Parent', app.UIAxes2);
+            else
+                cla(app.UIAxes2);
+                title(app.UIAxes2, 'Raw Right Image (unused)');
+            end
+        
+            setappdata(app.UIFigure, "LeftIm", leftIm);
+            if numel(app.ImageSets{app.SetID}) >= 2
+                setappdata(app.UIFigure, "RightIm", app.ImageSets{app.SetID}{2});
+            else
+                setappdata(app.UIFigure, "RightIm", []);
+            end
+        end
+
+        function nextFrame(app)
+            if isempty(app.ImageSets); return; end
+            app.SetID = app.SetID + 1;
+            if app.SetID > numel(app.ImageSets)
+                app.SetID = 1;
+            end
+            showCurrentSet(app);
+        end
+
+        function prevFrame(app)
+            if isempty(app.ImageSets); return; end
+            app.SetID = app.SetID - 1;
+            if app.SetID < 1
+                app.SetID = numel(app.ImageSets);
+            end
+            showCurrentSet(app);
+        end
+
+        function stopIfPlaying(app)
+            if app.IsPlaying
+                stop(app.PlayTimer);
+                app.IsPlaying = false;
+                app.PlayButton.Text = '▶';
+            end
+        end
+
+        % Refactored applyBounding to be generic to allow me to use it on
+        % either image individually
+        function [imgROI, x0, y0] = applyBoundingGeneric(app, img, useBounding, topPct, bottomPct, leftPct, rightPct)
+            if isempty(img)
+                imgROI = img; x0 = 0; y0 = 0; return;
+            end
+        
+            if ~useBounding
+                imgROI = img; x0 = 0; y0 = 0; return;
+            end
+        
+            H = size(img,1);
+            W = size(img,2);
+        
+            % Clamp 0..100
+            topPct    = max(0, min(topPct, 100));
+            bottomPct = max(0, min(bottomPct, 100));
+            leftPct   = max(0, min(leftPct, 100));
+            rightPct  = max(0, min(rightPct, 100));
+        
+            if leftPct + rightPct >= 100 || topPct + bottomPct >= 100
+                warning("Bounding box too tight: crops overlap. Reduce crop percentages.");
+            end
+        
+            % Convert crop % -> pixel indices
+            x1 = round(1 + (leftPct/100)   * (W-1));
+            x2 = round(W - (rightPct/100) * (W-1));
+            y1 = round(1 + (topPct/100)    * (H-1));
+            y2 = round(H - (bottomPct/100)* (H-1));
+        
+            % Clamp bounds
+            x1 = max(1, min(x1, W));  x2 = max(1, min(x2, W));
+            y1 = max(1, min(y1, H));  y2 = max(1, min(y2, H));
+        
+            % Prevent collapse
+            if x2 <= x1
+                mid = round((x1 + x2)/2);
+                x1 = max(1, mid-1);
+                x2 = min(W, mid+1);
+            end
+            if y2 <= y1
+                mid = round((y1 + y2)/2);
+                y1 = max(1, mid-1);
+                y2 = min(H, mid+1);
+            end
+        
+            imgROI = img(y1:y2, x1:x2, :);
+        
+            x0 = x1 - 1;
+            y0 = y1 - 1;
+        end
+
+        % Helper functions to apply individual bounding boxes
+        function [imgROI, x0, y0] = applyBoundingLeft(app, img)
+            [imgROI, x0, y0] = applyBoundingGeneric(app, img, ...
+                app.UseImageBoundingCheckBox.Value, ...
+                app.rowTop_EF.Value, app.rowBottom_EF.Value, ...
+                app.colLeft_EF.Value, app.colRight_EF.Value);
+        end
+        
+        function [imgROI, x0, y0] = applyBoundingRight(app, img)
+            [imgROI, x0, y0] = applyBoundingGeneric(app, img, ...
+                app.UseImageBoundingCheckBox_2.Value, ...
+                app.rowTop_EF_2.Value, app.rowBottom_EF_2.Value, ...
+                app.colLeft_EF_2.Value, app.colRight_EF_2.Value);
+        end
+
+        %% RUN LIVE CALCULATIONS
+        function runLiveCalculation(app)
+            if app.IsProcessing
+                return;
+            end
+            app.IsProcessing = true;
+            cleanupObj = onCleanup(@() releaseProcessing(app)); %#ok<NASGU>
+        
+            title(app.UIAxes3, sprintf("Running calc on frame %d", app.SetID));
+            title(app.UIAxes4, sprintf("Running calc on frame %d", app.SetID));
+            drawnow limitrate nocallbacks
+        
+            t0 = tic;
+        
+            leftIm  = getappdata(app.UIFigure, "LeftIm");
+            rightIm = getappdata(app.UIFigure, "RightIm");
+        
+            if isempty(leftIm)
+                uialert(app.UIFigure, 'Please load images first (Run Blender).', 'No images loaded');
+                return;
+            end
+
+            method = app.ColorMethodDropDown.Value;
+
+            switch method
+                case 'Grayscale'
+                    methodID = uint8(0);
+                case 'Binarize (B&W)'
+                    methodID = uint8(1);
+                case 'YCbCr'
+                    methodID = uint8(2);
+                case 'HSV'
+                    methodID = uint8(3);
+                otherwise
+                    methodID = uint8(0);
+            end
+            
+            try
+                [left_proc, right_proc, uL, vL, uR, vR] = snickerdoodleLink(app.snickClient, leftIm, rightIm, methodID);
+            catch ME
+                uialert(app.UIFigure, "Snickerdoodle Error: " + string(ME.message), "Processing Error");
+                return;
+            end
+
+            % display processed images
+            imshow(left_proc, 'Parent', app.UIAxes3);
+            hold(app.UIAxes3, 'on');
+            plot(app.UIAxes3, uL, vL, 'r+', 'LineWidth', 2);
+            hold(app.UIAxes3, 'off');
+
+            imshow(right_proc, 'Parent', app.UIAxes4);
+            hold(app.UIAxes4, 'on');
+            plot(app.UIAxes4, uR, vR, 'r+', 'LineWidth', 2);
+            hold(app.UIAxes4, 'off');
+        
+            if isnumeric(app.ballLocation) && numel(app.ballLocation) >= 3
+                ball_m = double(app.ballLocation);
+                
+                app.XCord_actual.Value = ball_m(1);
+                app.YCord_actual.Value = ball_m(2);
+                app.ZCord_actual.Value = ball_m(3);
+            else
+                app.XCord_actual.Value = NaN;
+                app.YCord_actual.Value = NaN;
+                app.ZCord_actual.Value = NaN;
+            end
+        
+            % Full-image coordinates
+            uL_full = uL;
+            vL_full = vL;
+            uR_full = uR;
+            vR_full = vR;
+        
+            % GUI outputs
+            app.XCord_LC_EF.Value = uL_full;
+            app.YCord_LC_EF.Value = vL_full;
+            app.XCord_RC_EF.Value = uR_full;
+            app.YCord_RC_EF.Value = vR_full;
+        
+            H = size(leftIm,1);
+            W = size(leftIm,2);
+            app.CamRows_EF.Value = H;
+            app.CamCol_EF.Value  = W;
+        
+            % Pose-based triangulation
+            camL_m = double(app.camL_Location(:));
+            camR_m = double(app.camR_Location(:));
+        
+            RwcL = app.camL_RotationMatrix;
+            RwcR = app.camR_RotationMatrix;
+        
+            PL = buildProjectionMatrix(app, camL_m, RwcL, W, H);
+            PR = buildProjectionMatrix(app, camR_m, RwcR, W, H);
+        
+            Xw_m = triangulateDLT(app, PL, PR, uL_full, vL_full, uR_full, vR_full);
+            Xw_mm = 1000 * Xw_m;
+        
+            % Already in meters from triangulation
+            x = Xw_m(1);
+            y = Xw_m(2);
+            z = Xw_m(3);
+            d = uL_full - uR_full;
+        
+            app.FrameCounter = app.FrameCounter + 1;
+        
+            hasCalc = all(isfinite([x y z])) && isfinite(d);
+            hasAct  = all(isfinite([app.XCord_actual.Value, app.YCord_actual.Value, app.ZCord_actual.Value]));
+        
+            if hasCalc && hasAct
+                act = [app.XCord_actual.Value, app.YCord_actual.Value, app.ZCord_actual.Value];
+                calc = [x, y, z];
+        
+                denom = abs(act);
+                denom(denom < 1e-9) = NaN;
+                pctErr = 100 * abs(calc - act) ./ denom;
+        
+                app.FrameHistory(end+1)    = app.FrameCounter;
+                app.ActXYZHistory(end+1,:) = act;
+                app.CalcXYZHistory(end+1,:)= calc;
+                app.PctErrHistory(end+1,:) = pctErr;
+                
+                % Error cloud data
+                err = app.CalcXYZHistory - app.ActXYZHistory;
+                
+                errX = err(:,1);
+                errY = err(:,2);
+                
+                app.ErrorScatter.XData = errX;
+                app.ErrorScatter.YData = errY;
+
+                % Compute max absolute error for symmetric bounds
+                maxErr = max(abs([errX; errY]));
+                
+                % Avoid zero-size axes
+                if maxErr < 1e-6
+                    maxErr = 1e-3;
+                end
+                
+                % Add small margin (10%)
+                margin = 1.1;
+                lim = maxErr * margin;
+                
+                xlim(app.ErrorCloud_Axes, [-lim lim]);
+                ylim(app.ErrorCloud_Axes, [-lim lim]);
+        
+                for i = 1:3
+                    app.LineAct(i).XData  = app.FrameHistory;
+                    app.LineAct(i).YData  = app.ActXYZHistory(:,i);
+        
+                    app.LineCalc(i).XData = app.FrameHistory;
+                    app.LineCalc(i).YData = app.CalcXYZHistory(:,i);
+                end
+        
+                for i = 1:3
+                    app.LineErr(i).XData = app.FrameHistory;
+                    app.LineErr(i).YData = app.PctErrHistory(:,i);
+                end
+        
+                Nkeep = 100;
+                if numel(app.FrameHistory) > Nkeep
+                    xwin = [app.FrameHistory(end-Nkeep+1) app.FrameHistory(end)];
+                else
+                    xwin = [1 max(10, app.FrameHistory(end))];
+                end
+                xlim(app.ActualVsCal_Axes, xwin);
+                xlim(app.PercentError_Axes, xwin);
+            end
+        
+            app.XCord_3D_EF.Value = x;
+            app.YCord_3D_EF.Value = y;
+            app.ZCord_3D_EF.Value = z;
+        
+            drawnow limitrate nocallbacks
+            app.RuntimemsEditField.Value = toc(t0) * 1000;
+        end
+
+        function [leftImg, rightImg] = blenderLinkStereo(app, client, width, height, camID, x, y, z, pitch, roll, yaw, objectName)
+            %#ok<INUSD> camID currently unused
+        
+            floats = single([width, height, x, y, z, pitch, roll, yaw]);
+            write(client, typecast(floats, 'uint8'));   % 32 bytes
+        
+            nameBytes = uint8(char(objectName));
+            nameBytes(end+1) = 0; % null terminator helps
+            write(client, [nameBytes, zeros(1, 1024 - numel(nameBytes), 'uint8')]);
+        
+            hdr = app.readExact(client, 8);
+            sizes = typecast(uint8(hdr), 'uint32');
+            leftSize  = double(sizes(1));
+            rightSize = double(sizes(2));
+        
+            leftRaw  = app.readExact(client, leftSize);
+            rightRaw = app.readExact(client, rightSize);
+        
+            % Object location (3 floats)
+            locRaw = app.readExact(client, 12);
+            loc = typecast(uint8(locRaw), 'single');
+            app.ballLocation = double([loc(1), loc(2), loc(3)]);
+        
+            % Left camera location (3 floats)
+            camL_loc_raw = app.readExact(client, 12);
+            camL_loc = typecast(uint8(camL_loc_raw), 'single');
+        
+            % Left camera rotation matrix (9 floats)
+            camL_R_raw = app.readExact(client, 36);
+            camL_R = typecast(uint8(camL_R_raw), 'single');
+        
+            % Right camera location (3 floats)
+            camR_loc_raw = app.readExact(client, 12);
+            camR_loc = typecast(uint8(camR_loc_raw), 'single');
+        
+            % Right camera rotation matrix (9 floats)
+            camR_R_raw = app.readExact(client, 36);
+            camR_R = typecast(uint8(camR_R_raw), 'single');
+        
+            % Current-frame camera pose
+            app.camL_Location = double([camL_loc(1), camL_loc(2), camL_loc(3)]);
+            app.camR_Location = double([camR_loc(1), camR_loc(2), camR_loc(3)]);
+        
+            % Python sends row-major flattened 3x3, reshape then transpose for MATLAB
+            app.camL_RotationMatrix = reshape(double(camL_R), [3,3])';
+            app.camR_RotationMatrix = reshape(double(camR_R), [3,3])';
+        
+            % --- Update GUI fields for Left Camera ---
+            app.LeftCam_XCord.Value = app.camL_Location(1);
+            app.LeftCam_YCord.Value = app.camL_Location(2);
+            app.LeftCam_ZCord.Value = app.camL_Location(3);
+        
+            % --- Update GUI fields for Right Camera ---
+            app.RightCam_XCord.Value = app.camR_Location(1);
+            app.RightCam_YCord.Value = app.camR_Location(2);
+            app.RightCam_ZCord.Value = app.camR_Location(3);
+        
+            leftRGBA  = reshape(uint8(leftRaw),  [4, width, height]);
+            rightRGBA = reshape(uint8(rightRaw), [4, width, height]);
+        
+            leftRGBA  = permute(leftRGBA,  [3 2 1]);
+            rightRGBA = permute(rightRGBA, [3 2 1]);
+        
+            leftImg  = leftRGBA(:,:,1:3);
+            rightImg = rightRGBA(:,:,1:3);
+        
+            leftImg = flipud(leftImg);
+            rightImg = flipud(rightImg);
+        end
+
+        function data = readExact(app, client, nBytes)
+        % Read exactly nBytes from tcpclient (blocks until received or timeout).
+            data = uint8([]);
+            while numel(data) < nBytes
+                chunk = read(client, nBytes - numel(data), "uint8");
+                if isempty(chunk)
+                    error("Socket read returned empty before receiving all bytes.");
+                end
+                data = [data; chunk(:)]; %#ok<AGROW>
+            end
+        end
+ 
+
+    end
+    
+
+    % Callbacks that handle component events
+    methods (Access = private)
+
+        % Code that executes after component creation
+        function startupFcn(app)
+            defaultBaseline_mm   = 50;     % mm
+            defaultFocal_mm      = 11;      % mm
+            defaultPixel_um      = 19;      % um (0.006 mm)
+
+            app.focalLength_EF.Value     = defaultFocal_mm;
+            app.focalLength_Slider.Value = defaultFocal_mm;
+
+            app.pixelSize_EF.Value     = defaultPixel_um;
+            app.pixelSize_Slider.Value = defaultPixel_um;
+            
+            
+            % defaults (your existing baseline/focal/pixel code ok)
+        
+            % Create play timer
+            app.PlayTimer = timer( ...
+                'ExecutionMode','fixedSpacing', ...  % don’t try to “catch up”
+                'BusyMode','drop', ...               % if still busy, skip this tick
+                'Period',0.25, ...
+                'TimerFcn',@(~,~)nextFrame(app));
+        
+            % calling checkbox handlers to force consistent state
+            UseImageBoundingCheckBoxValueChanged(app, []);
+            UseImageBoundingCheckBox_2ValueChanged(app, []);
+
+            % clear axes at startup
+            cla(app.UIAxes);  cla(app.UIAxes2);
+            cla(app.UIAxes3); cla(app.UIAxes4);
+            
+            % Initialize distance calc
+            cla(app.ActualVsCal_Axes);
+            grid(app.ActualVsCal_Axes, 'on');
+            hold(app.ActualVsCal_Axes, 'on');
+            
+            % 3 actual lines + 3 calculated lines
+            app.LineAct(1)  = plot(app.ActualVsCal_Axes, nan, nan, '-',  'DisplayName','Actual X');
+            app.LineAct(2)  = plot(app.ActualVsCal_Axes, nan, nan, '-',  'DisplayName','Actual Y');
+            app.LineAct(3)  = plot(app.ActualVsCal_Axes, nan, nan, '-',  'DisplayName','Actual Z');
+            
+            app.LineCalc(1) = plot(app.ActualVsCal_Axes, nan, nan, '--', 'DisplayName','Calc X');
+            app.LineCalc(2) = plot(app.ActualVsCal_Axes, nan, nan, '--', 'DisplayName','Calc Y');
+            app.LineCalc(3) = plot(app.ActualVsCal_Axes, nan, nan, '--', 'DisplayName','Calc Z');
+
+            cla(app.ErrorCloud_Axes);
+            grid(app.ErrorCloud_Axes, 'on');
+            hold(app.ErrorCloud_Axes, 'on');
+            
+            app.ErrorScatter = scatter(app.ErrorCloud_Axes, nan, nan, 15, 'filled');
+            
+            xline(app.ErrorCloud_Axes, 0, '--k');
+            yline(app.ErrorCloud_Axes, 0, '--k');
+            
+            title(app.ErrorCloud_Axes, 'Error Cloud (X vs Y)');
+            xlabel(app.ErrorCloud_Axes, 'Error X (m)');
+            ylabel(app.ErrorCloud_Axes, 'Error Y (m)');
+            axis(app.ErrorCloud_Axes, 'equal');
+            
+            hold(app.ErrorCloud_Axes, 'off');
+            
+            legend(app.ActualVsCal_Axes, 'Location','best');
+            hold(app.ActualVsCal_Axes, 'off');
+            
+            cla(app.PercentError_Axes);
+            grid(app.PercentError_Axes, 'on');
+            hold(app.PercentError_Axes, 'on');
+            
+            app.LineErr(1)  = plot(app.PercentError_Axes, nan, nan, '-', 'DisplayName','%Err X');
+            app.LineErr(2)  = plot(app.PercentError_Axes, nan, nan, '-', 'DisplayName','%Err Y');
+            app.LineErr(3)  = plot(app.PercentError_Axes, nan, nan, '-', 'DisplayName','%Err Z');
+            
+            legend(app.PercentError_Axes, 'Location','best');
+            hold(app.PercentError_Axes, 'off');
+            
+            % Reset histories
+            app.FrameCounter   = 0;
+            app.FrameHistory   = [];
+            app.CalcXYZHistory = [];
+            app.ActXYZHistory  = [];
+            app.PctErrHistory  = [];
+        end
+
+        % Value changed function: focalLength_EF
+        function focalLength_EFValueChanged(app, event)
+            app.focalLength_Slider.Value = app.focalLength_EF.Value;
+            
+        end
+
+        % Value changed function: focalLength_Slider
+        function focalLength_SliderValueChanged(app, event)
+            app.focalLength_EF.Value = app.focalLength_Slider.Value;
+            
+        end
+
+        % Value changed function: pixelSize_EF
+        function pixelSize_EFValueChanged(app, event)
+            app.pixelSize_Slider.Value = app.pixelSize_EF.Value;
+            
+        end
+
+        % Value changed function: pixelSize_Slider
+        function pixelSize_SliderValueChanged(app, event)
+            app.pixelSize_EF.Value = app.pixelSize_Slider.Value;
+            
+        end
+
+        % Callback function
+        function baseline_SliderValueChanged(app, event)
+
+            
+        end
+
+        % Callback function
+        function baseline_EFValueChanged(app, event)
+
+            
+        end
+
+        % Button pushed function: CalculateButton
+        function CalculateButtonPushed(app, event)
+
+            runLiveCalculation(app);
+        end
+
+        % Value changed function: CamCol_Slider
+        function CamCol_SliderValueChanged(app, event)
+            app.CamCol_EF.Value = app.CamCol_Slider.Value;
+            
+        end
+
+        % Value changed function: CamCol_EF
+        function CamCol_EFValueChanged(app, event)
+            app.CamCol_Slider.Value = app.CamCol_EF.Value;
+            
+        end
+
+        % Value changed function: CamRows_EF
+        function CamRows_EFValueChanged(app, event)
+            app.CamRows_Slider.Value = app.CamRows_EF.Value;
+            
+        end
+
+        % Value changed function: CamRows_Slider
+        function CamRows_SliderValueChanged(app, event)
+            app.CamRows_EF.Value = app.CamRows_Slider.Value;
+            
+        end
+
+        % Callback function
+        function ImageSetDropDownValueChanged(app, event)
+            % not used anymore
+        end
+
+        % Callback function
+        function TESTCHECKCheckBoxValueChanged(app, event)
+            % not used anymore
+        end
+
+        % Button pushed function: RunBlenderButton
+        function RunBlenderButtonPushed(app, event)
+             %#ok<INUSD>
+            app.FrameCounter   = 0;
+            app.FrameHistory   = [];
+            app.CalcXYZHistory = [];
+            app.ActXYZHistory  = [];
+            app.PctErrHistory  = [];
+        
+            if ~isempty(app.LineAct) && all(isvalid(app.LineAct))
+                for i = 1:3
+                    app.LineAct(i).XData  = nan; app.LineAct(i).YData  = nan;
+                    app.LineCalc(i).XData = nan; app.LineCalc(i).YData = nan;
+                    app.LineErr(i).XData  = nan; app.LineErr(i).YData  = nan;
+                end
+            end
+        
+            if ~isempty(app.ErrorScatter) && isvalid(app.ErrorScatter)
+                app.ErrorScatter.XData = nan;
+                app.ErrorScatter.YData = nan;
+            end
+        
+            try
+                client = tcpclient(app.server_ip, app.server_port, "Timeout", 20);
+            catch
+                uialert(app.UIFigure, ...
+                    'Ensure Blender server is running', ...
+                    'Could not connect');
+                return;
+            end
+        
+            width = 1920;
+            height = 1080;
+        
+            datFile = fullfile(pwd, 'datFiles', 'serve1.dat');
+        
+            try
+                posData = readmatrix(datFile);
+            catch ME
+                uialert(app.UIFigure, "Could not read .dat file: " + ME.message, "File Error");
+                return;
+            end
+        
+            if isempty(posData) || size(posData,2) < 3
+                uialert(app.UIFigure, ...
+                    '.dat file must contain at least 3 numeric columns: [x y z]', ...
+                    'Invalid File');
+                return;
+            end
+        
+            posData = posData(:,1:3);
+            N = size(posData,1);
+        
+            app.ImageSets = cell(1, N);
+            app.BallLocationHistory = zeros(N,3);
+        
+            app.LeftCamLocationHistory  = zeros(N,3);
+            app.RightCamLocationHistory = zeros(N,3);
+        
+            app.LeftCamRotationMatrixHistory  = zeros(3,3,N);
+            app.RightCamRotationMatrixHistory = zeros(3,3,N);
+        
+            saveFolder = fullfile(pwd, "captures");
+            if ~exist(saveFolder, 'dir')
+                mkdir(saveFolder);
+            end
+        
+            % ---- CAPTURE ALL FRAMES ----
+            for k = 1:5
+                dx = posData(k,1);
+                dz = posData(k,2);
+                dy = posData(k,3);
+        
+                noiseFactor = 0;
+                dx = dx + noiseFactor * randn();
+                dy = dy + noiseFactor * randn();
+                dz = dz + noiseFactor * randn();
+        
+                noiseFactorRot = 0;
+                yaw   = noiseFactorRot * randn();
+                pitch = noiseFactorRot * randn();
+                roll  = noiseFactorRot * randn();
+        
+                try
+                    [leftImg, rightImg] = app.blenderLinkStereo(client, width, height, ...
+                        1, dx, dy, dz, pitch, roll, yaw, "tennisBall");
+                catch ME
+                    uialert(app.UIFigure, "Blender link failed: " + ME.message, "Capture error");
+                    return;
+                end
+        
+                app.ImageSets{k} = {leftImg, rightImg};
+                app.BallLocationHistory(k,:) = app.ballLocation;
+        
+                app.LeftCamLocationHistory(k,:)  = app.camL_Location;
+                app.RightCamLocationHistory(k,:) = app.camR_Location;
+        
+                app.LeftCamRotationMatrixHistory(:,:,k)  = app.camL_RotationMatrix;
+                app.RightCamRotationMatrixHistory(:,:,k) = app.camR_RotationMatrix;
+        
+                leftPath  = fullfile(saveFolder, sprintf('leftImg_%d.jpeg', k));
+                rightPath = fullfile(saveFolder, sprintf('rightImg_%d.jpeg', k));
+        
+                imwrite(leftImg, leftPath);
+                imwrite(rightImg, rightPath);
+                disp("Frame " + k);
+            end
+
+            disp("All frames are uploaded");
+        
+            % ---- FORCE CALCULATION ON EVERY FRAME ----
+           % for k = 1:N
+              %  app.SetID = k;
+              %  showCurrentSet(app);   % this calls runLiveCalculation(app)
+         %   end
+        
+            % Return to first frame for display
+            app.SetID = 1;
+            showCurrentSet(app);
+        
+            % ---- EXPORT ONLY AFTER HISTORIES EXIST ----
+            try
+                exportResultsToExcel(app);
+            catch ME
+                uialert(app.UIFigure, "Excel export failed: " + ME.message, "Export Error");
+            end
+        end
+
+        % Button pushed function: PlayButton
+        function PlayButtonPushed(app, event)
+            if isempty(app.ImageSets)
+                uialert(app.UIFigure,'Run Blender first.','No images');
+                return;
+            end
+        
+            if ~app.IsPlaying
+                start(app.PlayTimer);
+                app.IsPlaying = true;
+                app.PlayButton.Text = '||';
+            else
+                stop(app.PlayTimer);
+                app.IsPlaying = false;
+                app.PlayButton.Text = '▶';
+            end
+        end
+
+        % Button pushed function: NextImageButton
+        function NextImageButtonPushed(app, event)
+            stopIfPlaying(app);
+            nextFrame(app);
+        end
+
+        % Button pushed function: PreviousImageButton
+        function PreviousImageButtonPushed(app, event)
+            stopIfPlaying(app);
+            prevFrame(app);
+        end
+
+        % Value changed function: UseImageBoundingCheckBox
+        function UseImageBoundingCheckBoxValueChanged(app, event)
+            tf = app.UseImageBoundingCheckBox.Value;
+        
+            if tf, s='on'; else, s='off'; end
+        
+            app.rowTop_Slider.Enable    = s;
+            app.rowTop_EF.Enable        = s;
+            app.rowBottom_Slider.Enable = s;
+            app.rowBottom_EF.Enable     = s;
+        
+            app.colLeft_Slider.Enable   = s;
+            app.colLeft_EF.Enable       = s;
+            app.colRight_Slider.Enable  = s;
+            app.colRight_EF.Enable      = s;
+        end
+
+        % Value changed function: colLeft_EF
+        function colLeft_EFValueChanged(app, event)
+            app.colLeft_Slider.Value = app.colLeft_EF.Value;
+            if ~app.IsPlaying
+                runLiveCalculation(app);
+            end
+        end
+
+        % Value changed function: colLeft_Slider
+        function colLeft_SliderValueChanged(app, event)
+            app.colLeft_EF.Value = app.colLeft_Slider.Value;
+            if ~app.IsPlaying
+                runLiveCalculation(app);
+            end
+        end
+
+        % Value changed function: rowBottom_EF
+        function rowBottom_EFValueChanged(app, event)
+            app.rowBottom_Slider.Value = app.rowBottom_EF.Value;
+            if ~app.IsPlaying
+                runLiveCalculation(app);
+            end
+        end
+
+        % Value changed function: rowBottom_Slider
+        function rowBottom_SliderValueChanged(app, event)
+            app.rowBottom_EF.Value = app.rowBottom_Slider.Value;
+            if ~app.IsPlaying
+                runLiveCalculation(app);
+            end
+        end
+
+        % Value changed function: rowTop_EF
+        function rowTop_EFValueChanged(app, event)
+            app.rowTop_Slider.Value = app.rowTop_EF.Value;
+            if ~app.IsPlaying
+                runLiveCalculation(app);
+            end
+        end
+
+        % Value changed function: rowTop_Slider
+        function rowTop_SliderValueChanged(app, event)
+            app.rowTop_EF.Value = app.rowTop_Slider.Value;
+            if ~app.IsPlaying
+                runLiveCalculation(app);
+            end
+        end
+
+        % Value changed function: colRight_EF
+        function colRight_EFValueChanged(app, event)
+            app.colRight_Slider.Value = app.colRight_EF.Value;
+            if ~app.IsPlaying
+                runLiveCalculation(app);
+            end
+        end
+
+        % Value changed function: colRight_Slider
+        function colRight_SliderValueChanged(app, event)
+            app.colRight_EF.Value = app.colRight_Slider.Value;
+            if ~app.IsPlaying
+                runLiveCalculation(app);
+            end
+        end
+
+        % Value changed function: colLeft_EF_2
+        function colLeft_EF_2ValueChanged(app, event)
+            app.colLeft_Slider_2.Value = app.colLeft_EF_2.Value;
+            if ~app.IsPlaying
+                runLiveCalculation(app);
+            end
+        end
+
+        % Value changed function: colLeft_Slider_2
+        function colLeft_Slider_2ValueChanged(app, event)
+            app.colLeft_EF_2.Value = app.colLeft_Slider_2.Value;
+            if ~app.IsPlaying
+                runLiveCalculation(app);
+            end
+        end
+
+        % Value changed function: rowTop_Slider_2
+        function rowTop_Slider_2ValueChanged(app, event)
+            app.rowTop_EF_2.Value = app.rowTop_Slider_2.Value;
+            if ~app.IsPlaying
+                runLiveCalculation(app);
+            end
+        end
+
+        % Value changed function: rowTop_EF_2
+        function rowTop_EF_2ValueChanged(app, event)
+            app.rowTop_Slider_2.Value = app.rowTop_EF_2.Value;
+            if ~app.IsPlaying
+                runLiveCalculation(app);
+            end
+        end
+
+        % Value changed function: colRight_EF_2
+        function colRight_EF_2ValueChanged(app, event)
+            app.colRight_Slider_2.Value = app.colRight_EF_2.Value;
+            if ~app.IsPlaying
+                runLiveCalculation(app);
+            end
+        end
+
+        % Value changed function: colRight_Slider_2
+        function colRight_Slider_2ValueChanged(app, event)
+            app.colRight_EF_2.Value = app.colRight_Slider_2.Value;
+            if ~app.IsPlaying
+                runLiveCalculation(app);
+            end
+        end
+
+        % Value changed function: rowBottom_EF_2
+        function rowBottom_EF_2ValueChanged(app, event)
+            app.rowBottom_Slider_2.Value = app.rowBottom_EF_2.Value;
+            if ~app.IsPlaying
+                runLiveCalculation(app);
+            end
+        end
+
+        % Value changed function: rowBottom_Slider_2
+        function rowBottom_Slider_2ValueChanged(app, event)
+            app.rowBottom_EF_2.Value = app.rowBottom_Slider_2.Value;
+            if ~app.IsPlaying
+                runLiveCalculation(app);
+            end
+        end
+
+        % Value changed function: UseImageBoundingCheckBox_2
+        function UseImageBoundingCheckBox_2ValueChanged(app, event)
+            tf = app.UseImageBoundingCheckBox_2.Value;
+
+            if tf, s='on'; else, s='off'; end
+        
+            app.rowTop_Slider_2.Enable    = s;
+            app.rowTop_EF_2.Enable        = s;
+            app.rowBottom_Slider_2.Enable = s;
+            app.rowBottom_EF_2.Enable     = s;
+        
+            app.colLeft_Slider_2.Enable   = s;
+            app.colLeft_EF_2.Enable       = s;
+            app.colRight_Slider_2.Enable  = s;
+            app.colRight_EF_2.Enable      = s;
+        
+            if ~app.IsPlaying
+                runLiveCalculation(app);
+            end
+            
+        end
+
+        % Button pushed function: ResetCalculationsButton
+        function ResetCalculationsButtonPushed(app, event)
+                app.FrameCounter   = 0;
+                app.FrameHistory   = [];
+                app.CalcXYZHistory = [];
+                app.ActXYZHistory  = [];
+                app.PctErrHistory  = [];
+            
+                if ~isempty(app.LineAct) && all(isvalid(app.LineAct))
+                    for i = 1:3
+                        app.LineAct(i).XData  = nan;
+                        app.LineAct(i).YData  = nan;
+            
+                        app.LineCalc(i).XData = nan;
+                        app.LineCalc(i).YData = nan;
+            
+                        app.LineErr(i).XData  = nan;
+                        app.LineErr(i).YData  = nan;
+                    end
+                end
+
+                if ~isempty(app.ErrorScatter) && isvalid(app.ErrorScatter)
+                    app.ErrorScatter.XData = nan;
+                    app.ErrorScatter.YData = nan;
+                end
+        end
+
+        % Button pushed function: ConnecttoSnickerdoodleButton
+        function ConnecttoSnickerdoodleButtonPushed(app, event)
+            try
+                app.snickClient = tcpclient(app.snickerdoodle_ip, app.snickerdoodle_port, "Timeout", 20);
+            catch ME
+                uialert(app.UIFigure, "Connection failed: " + ME.message, "Error");
+            end
+        end
+    end
+
+    % Component initialization
+    methods (Access = private)
+
+        % Create UIFigure and components
+        function createComponents(app)
+
+            % Create UIFigure and hide until all components are created
+            app.UIFigure = uifigure('Visible', 'off');
+            app.UIFigure.Position = [100 100 1226 1049];
+            app.UIFigure.Name = 'MATLAB App';
+
+            % Create ImageSelectionPanel
+            app.ImageSelectionPanel = uipanel(app.UIFigure);
+            app.ImageSelectionPanel.Title = 'Image Selection';
+            app.ImageSelectionPanel.Position = [431 961 403 89];
+
+            % Create PlayButton
+            app.PlayButton = uibutton(app.ImageSelectionPanel, 'push');
+            app.PlayButton.ButtonPushedFcn = createCallbackFcn(app, @PlayButtonPushed, true);
+            app.PlayButton.IconAlignment = 'center';
+            app.PlayButton.FontSize = 24;
+            app.PlayButton.Position = [161 19 44 39];
+            app.PlayButton.Text = '▶';
+
+            % Create NextImageButton
+            app.NextImageButton = uibutton(app.ImageSelectionPanel, 'push');
+            app.NextImageButton.ButtonPushedFcn = createCallbackFcn(app, @NextImageButtonPushed, true);
+            app.NextImageButton.IconAlignment = 'center';
+            app.NextImageButton.FontSize = 24;
+            app.NextImageButton.Position = [231 19 40 39];
+            app.NextImageButton.Text = '⏭';
+
+            % Create PreviousImageButton
+            app.PreviousImageButton = uibutton(app.ImageSelectionPanel, 'push');
+            app.PreviousImageButton.ButtonPushedFcn = createCallbackFcn(app, @PreviousImageButtonPushed, true);
+            app.PreviousImageButton.IconAlignment = 'center';
+            app.PreviousImageButton.FontSize = 24;
+            app.PreviousImageButton.Position = [90 19 44 39];
+            app.PreviousImageButton.Text = '⏮';
+
+            % Create MethodPanel
+            app.MethodPanel = uipanel(app.UIFigure);
+            app.MethodPanel.Title = 'Method';
+            app.MethodPanel.Position = [1 961 431 89];
+
+            % Create ColorMethodDropDownLabel
+            app.ColorMethodDropDownLabel = uilabel(app.MethodPanel);
+            app.ColorMethodDropDownLabel.HorizontalAlignment = 'right';
+            app.ColorMethodDropDownLabel.FontSize = 14;
+            app.ColorMethodDropDownLabel.Position = [19 27 89 22];
+            app.ColorMethodDropDownLabel.Text = 'Color Method';
+
+            % Create ColorMethodDropDown
+            app.ColorMethodDropDown = uidropdown(app.MethodPanel);
+            app.ColorMethodDropDown.Items = {'Grayscale', 'Binarize (B&W)', 'YCbCr', 'HSV'};
+            app.ColorMethodDropDown.FontSize = 14;
+            app.ColorMethodDropDown.Position = [123 27 123 22];
+            app.ColorMethodDropDown.Value = 'HSV';
+
+            % Create DSpectrogramOutputPanel
+            app.DSpectrogramOutputPanel = uipanel(app.UIFigure);
+            app.DSpectrogramOutputPanel.Title = '3D Spectrogram Output';
+            app.DSpectrogramOutputPanel.Position = [0 0 1227 194];
+
+            % Create YCordEditFieldLabel
+            app.YCordEditFieldLabel = uilabel(app.DSpectrogramOutputPanel);
+            app.YCordEditFieldLabel.HorizontalAlignment = 'right';
+            app.YCordEditFieldLabel.Position = [873 59 42 22];
+            app.YCordEditFieldLabel.Text = 'Y Cord';
+
+            % Create YCord_3D_EF
+            app.YCord_3D_EF = uieditfield(app.DSpectrogramOutputPanel, 'numeric');
+            app.YCord_3D_EF.Editable = 'off';
+            app.YCord_3D_EF.Position = [930 59 100 22];
+
+            % Create ZCordEditFieldLabel
+            app.ZCordEditFieldLabel = uilabel(app.DSpectrogramOutputPanel);
+            app.ZCordEditFieldLabel.HorizontalAlignment = 'right';
+            app.ZCordEditFieldLabel.Position = [873 38 42 22];
+            app.ZCordEditFieldLabel.Text = 'Z Cord';
+
+            % Create ZCord_3D_EF
+            app.ZCord_3D_EF = uieditfield(app.DSpectrogramOutputPanel, 'numeric');
+            app.ZCord_3D_EF.Editable = 'off';
+            app.ZCord_3D_EF.Position = [930 38 100 22];
+
+            % Create YCordEditField_2Label
+            app.YCordEditField_2Label = uilabel(app.DSpectrogramOutputPanel);
+            app.YCordEditField_2Label.HorizontalAlignment = 'right';
+            app.YCordEditField_2Label.Position = [274 61 42 22];
+            app.YCordEditField_2Label.Text = 'Y Cord';
+
+            % Create YCord_RC_EF
+            app.YCord_RC_EF = uieditfield(app.DSpectrogramOutputPanel, 'numeric');
+            app.YCord_RC_EF.Editable = 'off';
+            app.YCord_RC_EF.Position = [331 61 100 22];
+
+            % Create YCordEditField_3Label
+            app.YCordEditField_3Label = uilabel(app.DSpectrogramOutputPanel);
+            app.YCordEditField_3Label.HorizontalAlignment = 'right';
+            app.YCordEditField_3Label.Position = [24 61 42 22];
+            app.YCordEditField_3Label.Text = 'Y Cord';
+
+            % Create YCord_LC_EF
+            app.YCord_LC_EF = uieditfield(app.DSpectrogramOutputPanel, 'numeric');
+            app.YCord_LC_EF.Editable = 'off';
+            app.YCord_LC_EF.Position = [81 61 100 22];
+
+            % Create LeftCameraOriginBallPositionLabel
+            app.LeftCameraOriginBallPositionLabel = uilabel(app.DSpectrogramOutputPanel);
+            app.LeftCameraOriginBallPositionLabel.HorizontalAlignment = 'center';
+            app.LeftCameraOriginBallPositionLabel.Position = [49 102 134 44];
+            app.LeftCameraOriginBallPositionLabel.Text = {'Left Camera (Origin)'; 'Ball Position'};
+
+            % Create RightCameraOriginBallPositionLabel
+            app.RightCameraOriginBallPositionLabel = uilabel(app.DSpectrogramOutputPanel);
+            app.RightCameraOriginBallPositionLabel.HorizontalAlignment = 'center';
+            app.RightCameraOriginBallPositionLabel.Position = [290 103 134 44];
+            app.RightCameraOriginBallPositionLabel.Text = {'Right Camera (Origin)'; 'Ball Position'};
+
+            % Create CalculatedBallPositionLabel
+            app.CalculatedBallPositionLabel = uilabel(app.DSpectrogramOutputPanel);
+            app.CalculatedBallPositionLabel.HorizontalAlignment = 'center';
+            app.CalculatedBallPositionLabel.Position = [896 98 134 44];
+            app.CalculatedBallPositionLabel.Text = 'Calculated Ball Position';
+
+            % Create RuntimemsEditFieldLabel
+            app.RuntimemsEditFieldLabel = uilabel(app.DSpectrogramOutputPanel);
+            app.RuntimemsEditFieldLabel.HorizontalAlignment = 'right';
+            app.RuntimemsEditFieldLabel.Position = [997 141 77 22];
+            app.RuntimemsEditFieldLabel.Text = 'Runtime (ms)';
+
+            % Create RuntimemsEditField
+            app.RuntimemsEditField = uieditfield(app.DSpectrogramOutputPanel, 'numeric');
+            app.RuntimemsEditField.Editable = 'off';
+            app.RuntimemsEditField.Position = [1089 141 100 22];
+
+            % Create XCordLabel
+            app.XCordLabel = uilabel(app.DSpectrogramOutputPanel);
+            app.XCordLabel.HorizontalAlignment = 'right';
+            app.XCordLabel.Position = [873 79 42 22];
+            app.XCordLabel.Text = 'X Cord';
+
+            % Create XCord_3D_EF
+            app.XCord_3D_EF = uieditfield(app.DSpectrogramOutputPanel, 'numeric');
+            app.XCord_3D_EF.Editable = 'off';
+            app.XCord_3D_EF.Position = [930 79 100 22];
+
+            % Create XCordLabel_2
+            app.XCordLabel_2 = uilabel(app.DSpectrogramOutputPanel);
+            app.XCordLabel_2.HorizontalAlignment = 'right';
+            app.XCordLabel_2.Position = [274 82 42 22];
+            app.XCordLabel_2.Text = 'X Cord';
+
+            % Create XCord_RC_EF
+            app.XCord_RC_EF = uieditfield(app.DSpectrogramOutputPanel, 'numeric');
+            app.XCord_RC_EF.Editable = 'off';
+            app.XCord_RC_EF.Position = [331 82 100 22];
+
+            % Create XCordLabel_3
+            app.XCordLabel_3 = uilabel(app.DSpectrogramOutputPanel);
+            app.XCordLabel_3.HorizontalAlignment = 'right';
+            app.XCordLabel_3.Position = [24 81 42 22];
+            app.XCordLabel_3.Text = 'X Cord';
+
+            % Create XCord_LC_EF
+            app.XCord_LC_EF = uieditfield(app.DSpectrogramOutputPanel, 'numeric');
+            app.XCord_LC_EF.Editable = 'off';
+            app.XCord_LC_EF.Position = [81 81 100 22];
+
+            % Create YCordEditFieldLabel_2
+            app.YCordEditFieldLabel_2 = uilabel(app.DSpectrogramOutputPanel);
+            app.YCordEditFieldLabel_2.HorizontalAlignment = 'right';
+            app.YCordEditFieldLabel_2.Position = [1030 59 42 22];
+            app.YCordEditFieldLabel_2.Text = 'Y Cord';
+
+            % Create YCord_actual
+            app.YCord_actual = uieditfield(app.DSpectrogramOutputPanel, 'numeric');
+            app.YCord_actual.Editable = 'off';
+            app.YCord_actual.Position = [1087 59 100 22];
+
+            % Create ZCordEditFieldLabel_2
+            app.ZCordEditFieldLabel_2 = uilabel(app.DSpectrogramOutputPanel);
+            app.ZCordEditFieldLabel_2.HorizontalAlignment = 'right';
+            app.ZCordEditFieldLabel_2.Position = [1030 38 42 22];
+            app.ZCordEditFieldLabel_2.Text = 'Z Cord';
+
+            % Create ZCord_actual
+            app.ZCord_actual = uieditfield(app.DSpectrogramOutputPanel, 'numeric');
+            app.ZCord_actual.Editable = 'off';
+            app.ZCord_actual.Position = [1087 38 100 22];
+
+            % Create ActualBallPositionLabel_2
+            app.ActualBallPositionLabel_2 = uilabel(app.DSpectrogramOutputPanel);
+            app.ActualBallPositionLabel_2.HorizontalAlignment = 'center';
+            app.ActualBallPositionLabel_2.Position = [1053 98 134 44];
+            app.ActualBallPositionLabel_2.Text = 'Actual Ball Position';
+
+            % Create XCordLabel_4
+            app.XCordLabel_4 = uilabel(app.DSpectrogramOutputPanel);
+            app.XCordLabel_4.HorizontalAlignment = 'right';
+            app.XCordLabel_4.Position = [1030 79 42 22];
+            app.XCordLabel_4.Text = 'X Cord';
+
+            % Create XCord_actual
+            app.XCord_actual = uieditfield(app.DSpectrogramOutputPanel, 'numeric');
+            app.XCord_actual.Editable = 'off';
+            app.XCord_actual.Position = [1087 79 100 22];
+
+            % Create YCordEditFieldLabel_3
+            app.YCordEditFieldLabel_3 = uilabel(app.DSpectrogramOutputPanel);
+            app.YCordEditFieldLabel_3.HorizontalAlignment = 'right';
+            app.YCordEditFieldLabel_3.Position = [696 59 42 22];
+            app.YCordEditFieldLabel_3.Text = 'Y Cord';
+
+            % Create RightCam_YCord
+            app.RightCam_YCord = uieditfield(app.DSpectrogramOutputPanel, 'numeric');
+            app.RightCam_YCord.Editable = 'off';
+            app.RightCam_YCord.Position = [753 59 100 22];
+
+            % Create ZCordEditFieldLabel_3
+            app.ZCordEditFieldLabel_3 = uilabel(app.DSpectrogramOutputPanel);
+            app.ZCordEditFieldLabel_3.HorizontalAlignment = 'right';
+            app.ZCordEditFieldLabel_3.Position = [696 38 42 22];
+            app.ZCordEditFieldLabel_3.Text = 'Z Cord';
+
+            % Create RightCam_ZCord
+            app.RightCam_ZCord = uieditfield(app.DSpectrogramOutputPanel, 'numeric');
+            app.RightCam_ZCord.Editable = 'off';
+            app.RightCam_ZCord.Position = [753 38 100 22];
+
+            % Create XCordLabel_5
+            app.XCordLabel_5 = uilabel(app.DSpectrogramOutputPanel);
+            app.XCordLabel_5.HorizontalAlignment = 'right';
+            app.XCordLabel_5.Position = [696 79 42 22];
+            app.XCordLabel_5.Text = 'X Cord';
+
+            % Create RightCam_XCord
+            app.RightCam_XCord = uieditfield(app.DSpectrogramOutputPanel, 'numeric');
+            app.RightCam_XCord.Editable = 'off';
+            app.RightCam_XCord.Position = [753 79 100 22];
+
+            % Create YCordEditFieldLabel_4
+            app.YCordEditFieldLabel_4 = uilabel(app.DSpectrogramOutputPanel);
+            app.YCordEditFieldLabel_4.HorizontalAlignment = 'right';
+            app.YCordEditFieldLabel_4.Position = [539 59 42 22];
+            app.YCordEditFieldLabel_4.Text = 'Y Cord';
+
+            % Create LeftCam_YCord
+            app.LeftCam_YCord = uieditfield(app.DSpectrogramOutputPanel, 'numeric');
+            app.LeftCam_YCord.Editable = 'off';
+            app.LeftCam_YCord.Position = [596 59 100 22];
+
+            % Create ZCordEditFieldLabel_4
+            app.ZCordEditFieldLabel_4 = uilabel(app.DSpectrogramOutputPanel);
+            app.ZCordEditFieldLabel_4.HorizontalAlignment = 'right';
+            app.ZCordEditFieldLabel_4.Position = [539 38 42 22];
+            app.ZCordEditFieldLabel_4.Text = 'Z Cord';
+
+            % Create LeftCam_ZCord
+            app.LeftCam_ZCord = uieditfield(app.DSpectrogramOutputPanel, 'numeric');
+            app.LeftCam_ZCord.Editable = 'off';
+            app.LeftCam_ZCord.Position = [596 38 100 22];
+
+            % Create XCordLabel_6
+            app.XCordLabel_6 = uilabel(app.DSpectrogramOutputPanel);
+            app.XCordLabel_6.HorizontalAlignment = 'right';
+            app.XCordLabel_6.Position = [539 79 42 22];
+            app.XCordLabel_6.Text = 'X Cord';
+
+            % Create LeftCam_XCord
+            app.LeftCam_XCord = uieditfield(app.DSpectrogramOutputPanel, 'numeric');
+            app.LeftCam_XCord.Editable = 'off';
+            app.LeftCam_XCord.Position = [596 79 100 22];
+
+            % Create LeftCameraPositionLabel
+            app.LeftCameraPositionLabel = uilabel(app.DSpectrogramOutputPanel);
+            app.LeftCameraPositionLabel.HorizontalAlignment = 'center';
+            app.LeftCameraPositionLabel.Position = [579 103 134 44];
+            app.LeftCameraPositionLabel.Text = 'Left Camera Position';
+
+            % Create RIghtCameraPositionLabel
+            app.RIghtCameraPositionLabel = uilabel(app.DSpectrogramOutputPanel);
+            app.RIghtCameraPositionLabel.HorizontalAlignment = 'center';
+            app.RIghtCameraPositionLabel.Position = [736 103 134 44];
+            app.RIghtCameraPositionLabel.Text = 'RIght Camera Position';
+
+            % Create ImageOutputsPanel
+            app.ImageOutputsPanel = uipanel(app.UIFigure);
+            app.ImageOutputsPanel.Title = 'Image Outputs';
+            app.ImageOutputsPanel.Position = [0 193 684 320];
+
+            % Create GridLayout
+            app.GridLayout = uigridlayout(app.ImageOutputsPanel);
+            app.GridLayout.ColumnSpacing = 0;
+            app.GridLayout.RowSpacing = 0;
+            app.GridLayout.Padding = [0 0 0 0];
+
+            % Create UIAxes
+            app.UIAxes = uiaxes(app.GridLayout);
+            title(app.UIAxes, 'Raw Left Image')
+            xlabel(app.UIAxes, 'X')
+            ylabel(app.UIAxes, 'Y')
+            zlabel(app.UIAxes, 'Z')
+            app.UIAxes.Layout.Row = 1;
+            app.UIAxes.Layout.Column = 1;
+
+            % Create UIAxes2
+            app.UIAxes2 = uiaxes(app.GridLayout);
+            title(app.UIAxes2, 'Raw Right Image')
+            xlabel(app.UIAxes2, 'X')
+            ylabel(app.UIAxes2, 'Y')
+            zlabel(app.UIAxes2, 'Z')
+            app.UIAxes2.Layout.Row = 1;
+            app.UIAxes2.Layout.Column = 2;
+
+            % Create UIAxes3
+            app.UIAxes3 = uiaxes(app.GridLayout);
+            title(app.UIAxes3, 'Circle Detected Left Image')
+            xlabel(app.UIAxes3, 'X')
+            ylabel(app.UIAxes3, 'Y')
+            zlabel(app.UIAxes3, 'Z')
+            app.UIAxes3.Layout.Row = 2;
+            app.UIAxes3.Layout.Column = 1;
+
+            % Create UIAxes4
+            app.UIAxes4 = uiaxes(app.GridLayout);
+            title(app.UIAxes4, 'Circle Detected Right Image')
+            xlabel(app.UIAxes4, 'X')
+            ylabel(app.UIAxes4, 'Y')
+            zlabel(app.UIAxes4, 'Z')
+            app.UIAxes4.Layout.Row = 2;
+            app.UIAxes4.Layout.Column = 2;
+
+            % Create CameraPanel
+            app.CameraPanel = uipanel(app.UIFigure);
+            app.CameraPanel.Title = 'Camera';
+            app.CameraPanel.Position = [0 512 684 204];
+
+            % Create X
+            app.X = uilabel(app.CameraPanel);
+            app.X.Position = [358 34 25 22];
+            app.X.Text = 'X';
+
+            % Create focalLength_Slider
+            app.focalLength_Slider = uislider(app.CameraPanel);
+            app.focalLength_Slider.Limits = [0 200];
+            app.focalLength_Slider.ValueChangedFcn = createCallbackFcn(app, @focalLength_SliderValueChanged, true);
+            app.focalLength_Slider.Position = [141 154 150 3];
+
+            % Create xmLabel
+            app.xmLabel = uilabel(app.CameraPanel);
+            app.xmLabel.HorizontalAlignment = 'center';
+            app.xmLabel.Position = [24 144 106 22];
+            app.xmLabel.Text = 'Focal Length (mm)';
+
+            % Create focalLength_EF
+            app.focalLength_EF = uieditfield(app.CameraPanel, 'numeric');
+            app.focalLength_EF.Limits = [0 200];
+            app.focalLength_EF.ValueChangedFcn = createCallbackFcn(app, @focalLength_EFValueChanged, true);
+            app.focalLength_EF.HorizontalAlignment = 'center';
+            app.focalLength_EF.Position = [48 123 56 22];
+
+            % Create pixelSize_Slider
+            app.pixelSize_Slider = uislider(app.CameraPanel);
+            app.pixelSize_Slider.ValueChangedFcn = createCallbackFcn(app, @pixelSize_SliderValueChanged, true);
+            app.pixelSize_Slider.Position = [142 96 150 3];
+
+            % Create xmLabel_2
+            app.xmLabel_2 = uilabel(app.CameraPanel);
+            app.xmLabel_2.HorizontalAlignment = 'center';
+            app.xmLabel_2.Position = [35 86 86 22];
+            app.xmLabel_2.Text = 'Pixel Size (um)';
+
+            % Create pixelSize_EF
+            app.pixelSize_EF = uieditfield(app.CameraPanel, 'numeric');
+            app.pixelSize_EF.Limits = [0 100];
+            app.pixelSize_EF.ValueChangedFcn = createCallbackFcn(app, @pixelSize_EFValueChanged, true);
+            app.pixelSize_EF.HorizontalAlignment = 'center';
+            app.pixelSize_EF.Position = [49 65 56 22];
+
+            % Create CamCol_Slider
+            app.CamCol_Slider = uislider(app.CameraPanel);
+            app.CamCol_Slider.Limits = [0 3840];
+            app.CamCol_Slider.MajorTicks = [];
+            app.CamCol_Slider.ValueChangedFcn = createCallbackFcn(app, @CamCol_SliderValueChanged, true);
+            app.CamCol_Slider.Position = [434 82 201 3];
+
+            % Create xmLabel_4
+            app.xmLabel_4 = uilabel(app.CameraPanel);
+            app.xmLabel_4.HorizontalAlignment = 'center';
+            app.xmLabel_4.Position = [323 55 95 22];
+            app.xmLabel_4.Text = 'Rows x Columns';
+
+            % Create CamCol_EF
+            app.CamCol_EF = uieditfield(app.CameraPanel, 'numeric');
+            app.CamCol_EF.Limits = [0 3840];
+            app.CamCol_EF.ValueChangedFcn = createCallbackFcn(app, @CamCol_EFValueChanged, true);
+            app.CamCol_EF.HorizontalAlignment = 'center';
+            app.CamCol_EF.Position = [301 33 56 22];
+
+            % Create CamRows_Slider
+            app.CamRows_Slider = uislider(app.CameraPanel);
+            app.CamRows_Slider.Limits = [0 2160];
+            app.CamRows_Slider.ValueChangedFcn = createCallbackFcn(app, @CamRows_SliderValueChanged, true);
+            app.CamRows_Slider.Position = [435 58 201 3];
+
+            % Create CamRows_EF
+            app.CamRows_EF = uieditfield(app.CameraPanel, 'numeric');
+            app.CamRows_EF.Limits = [0 2160];
+            app.CamRows_EF.ValueChangedFcn = createCallbackFcn(app, @CamRows_EFValueChanged, true);
+            app.CamRows_EF.HorizontalAlignment = 'center';
+            app.CamRows_EF.Position = [369 33 56 22];
+
+            % Create LeftCameraRegionofInterestManualPanel
+            app.LeftCameraRegionofInterestManualPanel = uipanel(app.UIFigure);
+            app.LeftCameraRegionofInterestManualPanel.Title = 'Left Camera Region of Interest (Manual)';
+            app.LeftCameraRegionofInterestManualPanel.Position = [1 715 616 247];
+
+            % Create rowTop_Slider
+            app.rowTop_Slider = uislider(app.LeftCameraRegionofInterestManualPanel);
+            app.rowTop_Slider.ValueChangedFcn = createCallbackFcn(app, @rowTop_SliderValueChanged, true);
+            app.rowTop_Slider.Position = [193 162 150 3];
+
+            % Create xmLabel_5
+            app.xmLabel_5 = uilabel(app.LeftCameraRegionofInterestManualPanel);
+            app.xmLabel_5.HorizontalAlignment = 'center';
+            app.xmLabel_5.Position = [221 194 94 22];
+            app.xmLabel_5.Text = 'Row Slider (Top)';
+
+            % Create rowTop_EF
+            app.rowTop_EF = uieditfield(app.LeftCameraRegionofInterestManualPanel, 'numeric');
+            app.rowTop_EF.Limits = [0 100];
+            app.rowTop_EF.ValueChangedFcn = createCallbackFcn(app, @rowTop_EFValueChanged, true);
+            app.rowTop_EF.HorizontalAlignment = 'center';
+            app.rowTop_EF.Position = [239 173 56 22];
+
+            % Create rowBottom_Slider
+            app.rowBottom_Slider = uislider(app.LeftCameraRegionofInterestManualPanel);
+            app.rowBottom_Slider.ValueChangedFcn = createCallbackFcn(app, @rowBottom_SliderValueChanged, true);
+            app.rowBottom_Slider.Position = [193 44 150 3];
+
+            % Create xmLabel_6
+            app.xmLabel_6 = uilabel(app.LeftCameraRegionofInterestManualPanel);
+            app.xmLabel_6.HorizontalAlignment = 'center';
+            app.xmLabel_6.Position = [212 72 112 22];
+            app.xmLabel_6.Text = 'Row Slider (Bottom)';
+
+            % Create rowBottom_EF
+            app.rowBottom_EF = uieditfield(app.LeftCameraRegionofInterestManualPanel, 'numeric');
+            app.rowBottom_EF.Limits = [0 100];
+            app.rowBottom_EF.ValueChangedFcn = createCallbackFcn(app, @rowBottom_EFValueChanged, true);
+            app.rowBottom_EF.HorizontalAlignment = 'center';
+            app.rowBottom_EF.Position = [239 51 56 22];
+
+            % Create colLeft_Slider
+            app.colLeft_Slider = uislider(app.LeftCameraRegionofInterestManualPanel);
+            app.colLeft_Slider.ValueChangedFcn = createCallbackFcn(app, @colLeft_SliderValueChanged, true);
+            app.colLeft_Slider.Position = [19 101 150 3];
+
+            % Create xmLabel_7
+            app.xmLabel_7 = uilabel(app.LeftCameraRegionofInterestManualPanel);
+            app.xmLabel_7.HorizontalAlignment = 'center';
+            app.xmLabel_7.Position = [38 133 112 22];
+            app.xmLabel_7.Text = 'Column Slider (Left)';
+
+            % Create colLeft_EF
+            app.colLeft_EF = uieditfield(app.LeftCameraRegionofInterestManualPanel, 'numeric');
+            app.colLeft_EF.Limits = [0 100];
+            app.colLeft_EF.ValueChangedFcn = createCallbackFcn(app, @colLeft_EFValueChanged, true);
+            app.colLeft_EF.HorizontalAlignment = 'center';
+            app.colLeft_EF.Position = [65 112 56 22];
+
+            % Create colRight_Slider
+            app.colRight_Slider = uislider(app.LeftCameraRegionofInterestManualPanel);
+            app.colRight_Slider.ValueChangedFcn = createCallbackFcn(app, @colRight_SliderValueChanged, true);
+            app.colRight_Slider.Position = [369 100 150 3];
+
+            % Create xmLabel_8
+            app.xmLabel_8 = uilabel(app.LeftCameraRegionofInterestManualPanel);
+            app.xmLabel_8.HorizontalAlignment = 'center';
+            app.xmLabel_8.Position = [381 133 120 22];
+            app.xmLabel_8.Text = 'Column Slider (Right)';
+
+            % Create colRight_EF
+            app.colRight_EF = uieditfield(app.LeftCameraRegionofInterestManualPanel, 'numeric');
+            app.colRight_EF.Limits = [0 100];
+            app.colRight_EF.ValueChangedFcn = createCallbackFcn(app, @colRight_EFValueChanged, true);
+            app.colRight_EF.HorizontalAlignment = 'center';
+            app.colRight_EF.Position = [412 112 56 22];
+
+            % Create UseImageBoundingCheckBox
+            app.UseImageBoundingCheckBox = uicheckbox(app.LeftCameraRegionofInterestManualPanel);
+            app.UseImageBoundingCheckBox.ValueChangedFcn = createCallbackFcn(app, @UseImageBoundingCheckBoxValueChanged, true);
+            app.UseImageBoundingCheckBox.Text = 'Use Image Bounding';
+            app.UseImageBoundingCheckBox.Position = [27 194 134 22];
+
+            % Create DisparityPanel
+            app.DisparityPanel = uipanel(app.UIFigure);
+            app.DisparityPanel.Title = 'Disparity';
+            app.DisparityPanel.Position = [683 194 544 522];
+
+            % Create GridLayout2
+            app.GridLayout2 = uigridlayout(app.DisparityPanel);
+            app.GridLayout2.ColumnWidth = {'1x'};
+
+            % Create ActualVsCal_Axes
+            app.ActualVsCal_Axes = uiaxes(app.GridLayout2);
+            title(app.ActualVsCal_Axes, 'Actual Vs Calculated Location')
+            xlabel(app.ActualVsCal_Axes, 'X')
+            ylabel(app.ActualVsCal_Axes, 'Y')
+            zlabel(app.ActualVsCal_Axes, 'Z')
+            app.ActualVsCal_Axes.Layout.Row = 1;
+            app.ActualVsCal_Axes.Layout.Column = 1;
+
+            % Create GridLayout3
+            app.GridLayout3 = uigridlayout(app.GridLayout2);
+            app.GridLayout3.RowHeight = {'1x'};
+            app.GridLayout3.Layout.Row = 2;
+            app.GridLayout3.Layout.Column = 1;
+
+            % Create PercentError_Axes
+            app.PercentError_Axes = uiaxes(app.GridLayout3);
+            title(app.PercentError_Axes, 'Actual vs Calculated Percent Error')
+            xlabel(app.PercentError_Axes, 'X')
+            ylabel(app.PercentError_Axes, 'Y')
+            zlabel(app.PercentError_Axes, 'Z')
+            app.PercentError_Axes.Layout.Row = 1;
+            app.PercentError_Axes.Layout.Column = 1;
+
+            % Create ErrorCloud_Axes
+            app.ErrorCloud_Axes = uiaxes(app.GridLayout3);
+            title(app.ErrorCloud_Axes, '2D Error Scatter')
+            xlabel(app.ErrorCloud_Axes, 'X')
+            ylabel(app.ErrorCloud_Axes, 'Y')
+            zlabel(app.ErrorCloud_Axes, 'Z')
+            app.ErrorCloud_Axes.Layout.Row = 1;
+            app.ErrorCloud_Axes.Layout.Column = 2;
+
+            % Create RightCameraRegionofInterestManualPanel
+            app.RightCameraRegionofInterestManualPanel = uipanel(app.UIFigure);
+            app.RightCameraRegionofInterestManualPanel.Title = 'Right Camera Region of Interest (Manual)';
+            app.RightCameraRegionofInterestManualPanel.Position = [616 715 611 247];
+
+            % Create rowTop_Slider_2
+            app.rowTop_Slider_2 = uislider(app.RightCameraRegionofInterestManualPanel);
+            app.rowTop_Slider_2.ValueChangedFcn = createCallbackFcn(app, @rowTop_Slider_2ValueChanged, true);
+            app.rowTop_Slider_2.Position = [261 162 150 3];
+
+            % Create xmLabel_9
+            app.xmLabel_9 = uilabel(app.RightCameraRegionofInterestManualPanel);
+            app.xmLabel_9.HorizontalAlignment = 'center';
+            app.xmLabel_9.Position = [289 194 94 22];
+            app.xmLabel_9.Text = 'Row Slider (Top)';
+
+            % Create rowTop_EF_2
+            app.rowTop_EF_2 = uieditfield(app.RightCameraRegionofInterestManualPanel, 'numeric');
+            app.rowTop_EF_2.Limits = [0 100];
+            app.rowTop_EF_2.ValueChangedFcn = createCallbackFcn(app, @rowTop_EF_2ValueChanged, true);
+            app.rowTop_EF_2.HorizontalAlignment = 'center';
+            app.rowTop_EF_2.Position = [307 173 56 22];
+
+            % Create rowBottom_Slider_2
+            app.rowBottom_Slider_2 = uislider(app.RightCameraRegionofInterestManualPanel);
+            app.rowBottom_Slider_2.ValueChangedFcn = createCallbackFcn(app, @rowBottom_Slider_2ValueChanged, true);
+            app.rowBottom_Slider_2.Position = [261 44 150 3];
+
+            % Create xmLabel_10
+            app.xmLabel_10 = uilabel(app.RightCameraRegionofInterestManualPanel);
+            app.xmLabel_10.HorizontalAlignment = 'center';
+            app.xmLabel_10.Position = [280 72 112 22];
+            app.xmLabel_10.Text = 'Row Slider (Bottom)';
+
+            % Create rowBottom_EF_2
+            app.rowBottom_EF_2 = uieditfield(app.RightCameraRegionofInterestManualPanel, 'numeric');
+            app.rowBottom_EF_2.Limits = [0 100];
+            app.rowBottom_EF_2.ValueChangedFcn = createCallbackFcn(app, @rowBottom_EF_2ValueChanged, true);
+            app.rowBottom_EF_2.HorizontalAlignment = 'center';
+            app.rowBottom_EF_2.Position = [307 51 56 22];
+
+            % Create colLeft_Slider_2
+            app.colLeft_Slider_2 = uislider(app.RightCameraRegionofInterestManualPanel);
+            app.colLeft_Slider_2.ValueChangedFcn = createCallbackFcn(app, @colLeft_Slider_2ValueChanged, true);
+            app.colLeft_Slider_2.Position = [87 101 150 3];
+
+            % Create xmLabel_11
+            app.xmLabel_11 = uilabel(app.RightCameraRegionofInterestManualPanel);
+            app.xmLabel_11.HorizontalAlignment = 'center';
+            app.xmLabel_11.Position = [106 133 112 22];
+            app.xmLabel_11.Text = 'Column Slider (Left)';
+
+            % Create colLeft_EF_2
+            app.colLeft_EF_2 = uieditfield(app.RightCameraRegionofInterestManualPanel, 'numeric');
+            app.colLeft_EF_2.Limits = [0 100];
+            app.colLeft_EF_2.ValueChangedFcn = createCallbackFcn(app, @colLeft_EF_2ValueChanged, true);
+            app.colLeft_EF_2.HorizontalAlignment = 'center';
+            app.colLeft_EF_2.Position = [133 112 56 22];
+
+            % Create colRight_Slider_2
+            app.colRight_Slider_2 = uislider(app.RightCameraRegionofInterestManualPanel);
+            app.colRight_Slider_2.ValueChangedFcn = createCallbackFcn(app, @colRight_Slider_2ValueChanged, true);
+            app.colRight_Slider_2.Position = [437 100 150 3];
+
+            % Create xmLabel_12
+            app.xmLabel_12 = uilabel(app.RightCameraRegionofInterestManualPanel);
+            app.xmLabel_12.HorizontalAlignment = 'center';
+            app.xmLabel_12.Position = [449 133 120 22];
+            app.xmLabel_12.Text = 'Column Slider (Right)';
+
+            % Create colRight_EF_2
+            app.colRight_EF_2 = uieditfield(app.RightCameraRegionofInterestManualPanel, 'numeric');
+            app.colRight_EF_2.Limits = [0 100];
+            app.colRight_EF_2.ValueChangedFcn = createCallbackFcn(app, @colRight_EF_2ValueChanged, true);
+            app.colRight_EF_2.HorizontalAlignment = 'center';
+            app.colRight_EF_2.Position = [480 112 56 22];
+
+            % Create UseImageBoundingCheckBox_2
+            app.UseImageBoundingCheckBox_2 = uicheckbox(app.RightCameraRegionofInterestManualPanel);
+            app.UseImageBoundingCheckBox_2.ValueChangedFcn = createCallbackFcn(app, @UseImageBoundingCheckBox_2ValueChanged, true);
+            app.UseImageBoundingCheckBox_2.Text = 'Use Image Bounding';
+            app.UseImageBoundingCheckBox_2.Position = [46 194 134 22];
+
+            % Create Panel
+            app.Panel = uipanel(app.UIFigure);
+            app.Panel.Title = 'Panel';
+            app.Panel.Position = [833 961 393 89];
+
+            % Create RunBlenderButton
+            app.RunBlenderButton = uibutton(app.Panel, 'push');
+            app.RunBlenderButton.ButtonPushedFcn = createCallbackFcn(app, @RunBlenderButtonPushed, true);
+            app.RunBlenderButton.Position = [19 38 161 21];
+            app.RunBlenderButton.Text = 'Run Blender';
+
+            % Create ResetCalculationsButton
+            app.ResetCalculationsButton = uibutton(app.Panel, 'push');
+            app.ResetCalculationsButton.ButtonPushedFcn = createCallbackFcn(app, @ResetCalculationsButtonPushed, true);
+            app.ResetCalculationsButton.Position = [197 9 161 21];
+            app.ResetCalculationsButton.Text = 'Reset Calculations';
+
+            % Create CalculateButton
+            app.CalculateButton = uibutton(app.Panel, 'push');
+            app.CalculateButton.ButtonPushedFcn = createCallbackFcn(app, @CalculateButtonPushed, true);
+            app.CalculateButton.Position = [19 10 161 19];
+            app.CalculateButton.Text = 'Calculate';
+
+            % Create ConnecttoSnickerdoodleButton
+            app.ConnecttoSnickerdoodleButton = uibutton(app.Panel, 'push');
+            app.ConnecttoSnickerdoodleButton.ButtonPushedFcn = createCallbackFcn(app, @ConnecttoSnickerdoodleButtonPushed, true);
+            app.ConnecttoSnickerdoodleButton.Position = [197 36 161 23];
+            app.ConnecttoSnickerdoodleButton.Text = 'Connect to Snickerdoodle';
+
+            % Show the figure after all components are created
+            app.UIFigure.Visible = 'on';
+        end
+    end
+
+    % App creation and deletion
+    methods (Access = public)
+
+        % Construct app
+        function app = gui
+
+            % Create UIFigure and components
+            createComponents(app)
+
+            % Register the app with App Designer
+            registerApp(app, app.UIFigure)
+
+            % Execute the startup function
+            runStartupFcn(app, @startupFcn)
+
+            if nargout == 0
+                clear app
+            end
+        end
+
+        % Code that executes before app deletion
+        function delete(app)
+
+            % Delete UIFigure when app is deleted
+            delete(app.UIFigure)
+        end
+    end
+end
